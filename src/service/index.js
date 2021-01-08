@@ -24,11 +24,7 @@ class Service {
             axios_instance
                 .post(endpoint, payload)
                 .then(res => {
-                    if (res.data.statusText === 'success') {
-                        success(res.data)
-                    } else {
-                        error(res.data)
-                    }
+                    success(res.data)
                 })
                 .catch(err => error(err))
         }

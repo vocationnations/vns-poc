@@ -3,10 +3,11 @@ import React, { useState} from 'react';
 
 const Question = ({question_data, setScores, advanceQuestion, questionNumber}) => {
   const [buttonType, setButtonType] = useState('');
-
+  const [isSelected, setIsSelected] = useState(false);
 
   const handleOptionSelect = (opt_type) => {
     setButtonType(opt_type);
+    setIsSelected(true);
   }
 
   const saveScore = (type) => {
@@ -20,6 +21,7 @@ const Question = ({question_data, setScores, advanceQuestion, questionNumber}) =
       })
     )
     advanceQuestion();
+    setIsSelected(false);
   }
 
   return (
@@ -34,7 +36,7 @@ const Question = ({question_data, setScores, advanceQuestion, questionNumber}) =
           <button className="btn btn-info mb-2" onClick={() => handleOptionSelect("market")}>{question_data.market_option}</button>
           <button className="btn btn-info mb-2" onClick={() => handleOptionSelect("hierarchy")}>{question_data.hierarchy_option}</button>
         </div>
-        <button className="btn btn-primary" onClick={() => saveScore(buttonType)}>Next</button>
+        <button className="btn btn-primary" disabled={!isSelected} onClick={() => saveScore(buttonType)}>Next</button>
       </div>
     </div>
   );
