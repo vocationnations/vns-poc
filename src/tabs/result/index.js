@@ -3,7 +3,7 @@ import AlgorithmService from '../../service/algorithm';
 
 const algorithm_service = new AlgorithmService();
 
-const ResultsTab = ({candidateSkills,candidateCulture,employerSkills,employerCulture}) => {
+const ResultsTab = ({candidateSkills, candidateCulture, employerSkills, employerCulture, candidateWorth, employerWorth}) => {
 
   const [results, setResults] = useState('')
   const [error, setError] = useState('');
@@ -11,8 +11,14 @@ const ResultsTab = ({candidateSkills,candidateCulture,employerSkills,employerCul
   useEffect(() => {
     const data = {
       worth: {
-        skills: 60,
-        culture: 40,
+        candidate: {
+          skills: candidateWorth.skills,
+          culture: candidateWorth.culture
+        },
+        employer: {
+          skills: employerWorth.skills,
+          culture: employerWorth.culture
+        }
       },
       candidate: {
         culture: [
@@ -122,15 +128,13 @@ const ResultsTab = ({candidateSkills,candidateCulture,employerSkills,employerCul
     algorithm_service.calculateScore(
         data,
         (res) => {
-          console.log("SOMEHTING");
           setResults(res);
-          console.log(res);
         },
         (err) => {
-          console.log(err);
           setError('ERROR: Cannot fetch results: ' + err.message)
         }
     )
+    console.log(data);
   },[])
 
   return (
