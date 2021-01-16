@@ -57,7 +57,7 @@ const Questions = ({setDone,setScores}) => {
   const [questionNumber, setQuestionNumber] = useState(0);
 
   const advanceQuestion = () => {
-        if(questions.length-1 == questionNumber) {
+        if(questions.length-1 === questionNumber) {
           setDone(true);
         }
         setQuestionNumber((prev) => prev + 1)

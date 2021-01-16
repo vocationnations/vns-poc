@@ -16,7 +16,7 @@ class Service {
 
     constructor() {
         if (this.constructor === Service)
-            throw new TypeError('ERROR: Abstract class \"Service\" cannot be instantiated.');
+            throw new TypeError('ERROR: Abstract class "Service" cannot be instantiated.');
     }
 
     submit(endpoint, method, payload = {}, success, error) {

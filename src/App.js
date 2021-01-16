@@ -6,7 +6,7 @@ import {CultureSelectionTab, IntroductionTab, ResultsTab, SkillsSelectionTab, Wo
 
 const App = () => {
 
-    const [stepNumber, setStepNumber] = useState(0);
+    const [stepNumber, setStepNumber] = useState(2);
 
     const [candidateSkills, setCandidateSkills] = useState(null);
     const [candidateCulture, setCandidateCulture] = useState(null);
@@ -63,7 +63,7 @@ const App = () => {
                 <ul className="steps six clearfix justify-content-center" id="step-buttons">
                     {
                         steps.map((s, i) => {
-                            return <li className={stepNumber === i ? 'active' : ''}><span
+                            return <li key={i} className={stepNumber === i ? 'active' : ''}><span
                                 className="step-no">{i}</span>{s.name}</li>
                         })
                     }
@@ -72,7 +72,7 @@ const App = () => {
             <hr/>
             {
                 steps.map((r, i) => {
-                    return stepNumber === i && r.component;
+                    return stepNumber === i && <div key={i}>{r.component}</div>;
                 })
             }
         </div>
