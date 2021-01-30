@@ -29,13 +29,15 @@ const Question = ({question_data, setScores, advanceQuestion, questionNumber}) =
   ]
 
   const [state, setState] = useState({
-    sentences: []
+    rank1: [],
+    rank2: [],
   });
 
   useEffect(() => {
-    console.log(sntnces);
+    let a = sntnces.splice(0,2)
     setState({
-      sentences: sntnces
+      rank1: sntnces,
+      rank2: a
     })
   }, [question_data])
 
@@ -49,10 +51,53 @@ const Question = ({question_data, setScores, advanceQuestion, questionNumber}) =
     return result;
   };
 
+  let id2List = {
+    rank1: 'rank1',
+    rank2: 'rank2'
+  };
+
+  let getList = id => state[id2List[id]];
+
+  const move = (source, destination, droppableSource, droppableDestination) => {
+    const sourceClone = Array.from(source);
+    const destClone = Array.from(destination);
+    const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+    destClone.splice(droppableDestination.index, 0, removed);
+
+    const result = {};
+    result[droppableSource.droppableId] = sourceClone;
+    result[droppableDestination.droppableId] = destClone;
+
+    return result;
+  };
+
+  const grid = 8;
+
+  const getItemStyle = (isDragging, draggableStyle) => ({
+    // some basic styles to make the items look a bit nicer
+    userSelect: 'none',
+    padding: grid * 2,
+    margin: `0 0 ${grid}px 0`,
+
+    // change background colour if dragging
+    background: isDragging ? 'lightgreen' : 'grey',
+
+    // styles we need to apply on draggables
+    ...draggableStyle
+  });
+
+  const getListStyle = isDraggingOver => ({
+    background: isDraggingOver ? 'lightblue' : 'lightgrey',
+    padding: grid,
+    width: 500,
+  });
+
+
   const saveScore = () => {
     let culture = {}
-    for (let i = 0; i < state.sentences.length; i++) {
-      culture[String(state.sentences[i].id)] = state.sentences.length - i;
+    for (let i = 0; i < state.rank1.length; i++) {
+      culture[String(state.rank1[i].id)] = state.rank1.length - i;
     }
 
     setScores(
@@ -64,23 +109,43 @@ const Question = ({question_data, setScores, advanceQuestion, questionNumber}) =
     advanceQuestion();
   }
 
-  const onDragEnd = (result) => {
-    if (!result.destination) {
+  const onDragEnd = result => {
+    const {source, destination} = result;
+
+    // dropped outside the list
+    if (!destination) {
       return;
     }
 
-    if (result.destination.index === result.source.index) {
-      return;
+    if (source.droppableId === destination.droppableId) {
+      const items = reorder(
+          getList(source.droppableId),
+          source.index,
+          destination.index
+      );
+
+      let state = {items};
+
+      if (source.droppableId === 'rank2') {
+        state = {selected: items};
+      }
+
+      setState(state);
+    } else {
+      const result = move(
+          getList(source.droppableId),
+          getList(destination.droppableId),
+          source,
+          destination
+      );
+
+      setState({
+        items: result.rank1,
+        selected: result.rank2
+      });
     }
+  };
 
-    const sentences = reorder(
-      state.sentences,
-      result.source.index,
-      result.destination.index
-    );
-
-    setState({ sentences });
-  }
   console.log("DOING THIS AGAIN");
   return (
     <div className="card">
@@ -89,19 +154,33 @@ const Question = ({question_data, setScores, advanceQuestion, questionNumber}) =
         <hr />
         <h5 className="card-title text-center">{question_data.question}</h5>
         <div className="d-flex flex-column col-lg-5 mx-auto text-center">
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="list">
-              {(provided, snapshot) => (
-                  <div ref={provided.innerRef} {...provided.droppableProps}>
-                    {
-                      state.sentences.map((s, k) => {
-                        return <Sentence sentence={s} index={k} key={k}/>
-                      })
-                    }
-                    {provided.placeholder}
-                  </div>
-              )}
-            </Droppable>
+          <DragDropContext onDragEnd={onDragEnd} style={{border: "2px solid green"}}>
+            <div className="row">
+              <Droppable droppableId="rank1">
+                {(provided, snapshot) => (
+                    <div ref={provided.innerRef} {...provided.droppableProps} style={getListStyle(snapshot.isDraggingOver)}>
+                      {
+                        state.rank1.map((s, k) => {
+                          return <Sentence sentence={s} index={k} key={k}/>
+                        })
+                      }
+                      {provided.placeholder}
+                    </div>
+                )}
+              </Droppable>
+              <Droppable droppableId="rank2" style={{border: "4px solid red"}}>
+                {(provided, snapshot) => (
+                    <div ref={provided.innerRef} {...provided.droppableProps} style={getListStyle(snapshot.isDraggingOver)}>
+                      {
+                        state.rank1.map((s, k) => {
+                          return <Sentence sentence={s} index={k} key={k}/>
+                        })
+                      }
+                      {provided.placeholder}
+                    </div>
+                )}
+              </Droppable>
+            </div>
           </DragDropContext>
         </div>
         <button className="btn btn-primary" onClick={() => saveScore()}>Next</button>

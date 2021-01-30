@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Question from './question';
+import TestTab from "../tabs/test";
 
 
 const questions = [
@@ -67,7 +68,7 @@ const Questions = ({setDone,setScores}) => {
     <div className="container">
       {
         questions.length > questionNumber ? (
-          <Question question_data={questions[questionNumber]} setScores={setScores} advanceQuestion={advanceQuestion} questionNumber={questionNumber} />
+          <TestTab question_data={questions[questionNumber]} setScores={setScores} advanceQuestion={advanceQuestion} questionNumber={questionNumber} />
         ) : (
           <div>Finished answering candidate questions! Proceed to next step!<br /><br /></div>
         )

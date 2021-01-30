@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 
 import {CultureSelectionTab, IntroductionTab, ResultsTab, SkillsSelectionTab, WorthTab} from './tabs';
+import TestTab from "./tabs/test";
 
 
 const App = () => {
