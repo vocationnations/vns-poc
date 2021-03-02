@@ -2,12 +2,10 @@ import React, {useState} from 'react';
 import './App.css';
 
 import {CultureSelectionTab, IntroductionTab, ResultsTab, SkillsSelectionTab, WorthTab} from './tabs';
-import TestTab from "./tabs/test";
-
 
 const App = () => {
 
-    const [stepNumber, setStepNumber] = useState(2);
+    const [stepNumber, setStepNumber] = useState(0);
 
     const [candidateSkills, setCandidateSkills] = useState(null);
     const [candidateCulture, setCandidateCulture] = useState(null);
@@ -24,6 +22,7 @@ const App = () => {
     }
 
     const advanceStep = () => {
+        console.log(candidateCulture)
         setStepNumber((prev) => {
             return prev + 1;
         })
