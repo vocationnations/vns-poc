@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -159,9 +161,15 @@ code {
   border-radius: 40px;
   z-index: -1;
 }
+
 .module-stepbar .steps li.done span.step-no {
   background-color: #f9f9f9;
   color: #636363;
   border: 1px solid #636363;
   border-radius: 40px;
 }
+
+.vspacer-10 {
+  height: 10px;
+}
+
