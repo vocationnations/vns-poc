@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import './App.css';
 
 import {CultureSelectionTab, IntroductionTab, ResultsTab, SkillsSelectionTab, WorthTab} from './tabs';
 
-const App = () => {
+const VnsPocComponent = () => {
 
     const [stepNumber, setStepNumber] = useState(0);
 
@@ -79,4 +78,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default VnsPocComponent;

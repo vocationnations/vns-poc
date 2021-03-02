@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+.border-black {
+    border: 1px solid black;
+}
+
+
+.bg-black {
+    background-color: black;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.bg-vn {
+    background-color: #87C8B3;
+}
+
+.border-red {
+    border: 1px solid red;
+}
+
+.border-green {
+    border: 1px solid green;
+}
+
+.heroSection {
+    background: url('https://upload.wikimedia.org/wikipedia/commons/5/5e/Midtown_Manhattan_2019.jpg');
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    width: 100%;
+    text-align: center;
+}
+
+.heroSection::before {
+    animation: bounce 1s ease infinite;
+    bottom: 2rem;
+    color: #FFF;
+    content: '╲╱';
+    font-size: 2rem;
+    height: 4rem;
+    left: 50%;
+    letter-spacing: -1px;
+    line-height: 4rem;
+    margin-left: -3rem;
+    opacity: 0.8;
+    position: absolute;
+    text-align: center;
+    width: 6rem;
+}
+
+.heroSection > .container {
+    padding-top: 2%;
+    background-color: white;
+}
+
+.heroSection > .container > h1 {
+    font-family: 'Alata', sans-serif;
+    font-size: 45px !important;
+    text-transform: uppercase;
+}
+
+.formSection {
+    height: 100vh;
+    background: #F6E7C9;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #444;
+    margin: 40px 0;
+}
+
+
+@keyframes bounce {
+    50% {
+        transform: translateY(-50%);
+    }
+}
