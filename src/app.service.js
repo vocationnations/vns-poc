@@ -1,7 +1,8 @@
 import axios from "axios";
+import {firebaseApp} from "./config/firebase-config";
 
 const axios_instance = axios.create({
-    baseURL: "",
+    baseURL: "http://localhost:10000/",
     headers: {
         'Content-Type': 'application/json'
     }
@@ -26,6 +27,26 @@ class Service {
     constructor() {
         if (this.constructor === Service)
             throw new TypeError('ERROR: Abstract class \"Service\" cannot be instantiated.');
+    }
+
+    /**
+     * addDataToCollection is used to add new documents into a specific firebase collection
+     * @param collection_name the collection name to add the document into
+     * @param data the data to add to the firebase collection
+     * @param success the callback that gets called when successful
+     * @param error the callback that gets called when unsuccessful
+     */
+    addDataToCollection(collection_name, data, success, error) {
+        firebaseApp
+            .firestore()
+            .collection(collection_name)
+            .add(data)
+            .then((res) => {
+                success(res)
+            })
+            .catch((e) => {
+                error(e)
+            })
     }
 
     /**

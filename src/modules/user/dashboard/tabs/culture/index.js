@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import Questions from '../../components/questions';
+import React, {useEffect, useState} from 'react';
+import Questions from '../../../../../components/questions';
 
-const CultureSelectionTab = ({advanceStep,update}) => {
+const CultureSelectionTab = ({advanceStep, update}) => {
   const [done, setDone] = useState(false);
-  const [scores,setScores] = useState({});
+  const [scores, setScores] = useState([]);
 
   useEffect(() => {
-    if(done) {
+    if (done) {
       update(scores);
     }
-  },[done])
+  }, [done])
 
   return (
     <div className="container">

@@ -36,7 +36,9 @@ const LoginComponent = () => {
                     <input value={pass} onChange={(e) => setPass(e.target.value)} type="password"
                            className="form-control"/>
                 </div>
-                <button type="submit" className="btn btn-info" onClick={() => handleSignIn()}>Sign In</button>
+                <button type="submit" className="btn btn-info" onSubmit={(event) => event.preventDefault()}
+                        onClick={() => handleSignIn()}>Sign In
+                </button>
             </div>
         </div>
     );

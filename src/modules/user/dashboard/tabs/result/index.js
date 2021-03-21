@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import AlgorithmService from '../../service/algorithm';
+import AlgorithmService from "../../../user.service";
 
 const algorithm_service = new AlgorithmService();
 
@@ -134,7 +134,6 @@ const ResultsTab = ({candidateSkills, candidateCulture, employerSkills, employer
           setError('ERROR: Cannot fetch results: ' + err.message)
         }
     )
-    console.log(data);
   },[])
 
   return (
