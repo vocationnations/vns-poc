@@ -50,20 +50,6 @@ const getListStyle = isDraggingOver => ({
 
 class Question extends Component {
 
-    question_data = this.props.question_data;
-    sentences = [
-        {id: 'clan', content: this.question_data.clan_option},
-        {id: 'adhocracy', content: this.question_data.adhocracy_option},
-        {id: 'market', content: this.question_data.market_option},
-        {id: 'hierarchy', content: this.question_data.hierarchy_option},
-    ]
-    state = {
-        rank1: this.sentences,
-        rank2: [],
-        rank3: [],
-        rank4: [],
-        bin: []
-    };
     /**
      * A semi-generic way to handle multiple lists. Matches
      * the IDs of the droppable container to the names of the
@@ -79,6 +65,18 @@ class Question extends Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+            rank1: [
+                {id: 'clan', content: this.props.question_data.clan_option},
+                {id: 'adhocracy', content: this.props.question_data.adhocracy_option},
+                {id: 'market', content: this.props.question_data.market_option},
+                {id: 'hierarchy', content: this.props.question_data.hierarchy_option}
+            ],
+            rank2: [],
+            rank3: [],
+            rank4: [],
+            bin: []
+        };
         this.saveScore = this.saveScore.bind(this);
     }
 
@@ -179,16 +177,29 @@ class Question extends Component {
             domains [sid] -= 25
         }
 
-        console.log(domains);
+        this.props.setScores(prev => [...prev, domains])
 
-
-        this.props.setScores(
-            prev => ({
-                ...prev,
-                domains
-            })
-        )
         this.props.advanceQuestion();
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log("UPDATING");
+        if (prevProps !== this.props) {
+            this.setState(
+                {
+                    rank1: [
+                        {id: 'clan', content: this.props.question_data.clan_option},
+                        {id: 'adhocracy', content: this.props.question_data.adhocracy_option},
+                        {id: 'market', content: this.props.question_data.market_option},
+                        {id: 'hierarchy', content: this.props.question_data.hierarchy_option}
+                    ],
+                    rank2: [],
+                    rank3: [],
+                    rank4: [],
+                    bin: []
+                }
+            )
+        }
     }
 
     // Normally you would want to split things out into separate components.
