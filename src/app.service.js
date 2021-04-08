@@ -50,6 +50,44 @@ class Service {
     }
 
     /**
+     * checkFieldInDatabase checks to see if the value of the field matches to the one provided.
+     * @param collection_name the collection name to check into
+     * @param document_id the document in which the field resides
+     * @param field the name of the field
+     * @param val the value to check against
+     * @param success the callback that runs if successful
+     * @param errorCallback the callback that runs if unsuccessful
+     * @return 0 if same, 1 if different
+     */
+    checkFieldInDatabase = (collection_name, document_id, field, val, success, errorCallback) => {
+        firebaseApp
+            .firestore()
+            .collection(collection_name)
+            .doc(document_id)
+            .get()
+            .then((doc) => {
+                if(doc.exists){
+                    const data = doc.data();
+
+                    if(data[field]){
+                        if(val === data[field]){
+                            return success(0)
+                        }
+                        return errorCallback(1)
+                    } else {
+                        return errorCallback("field \"" + field + "\" not found")
+                    }
+                } else {
+                    return errorCallback("document id \"" + document_id + "\" doesn't exist")
+                }
+            })
+            .catch((e) => {
+                console.log("Collection Name: " + collection_name);
+                errorCallback(e.message);
+            })
+    }
+
+    /**
      * Generic function used for submitting firebase function requests.
      * @param endpoint the firebase function name
      * @param method the method of requests. Check above for possible methods

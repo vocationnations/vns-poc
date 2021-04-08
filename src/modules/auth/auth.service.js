@@ -6,9 +6,32 @@ import {firebaseAppAuth} from "../../config/firebase-config";
  * with firebase authentication protocol
  */
 class AuthService extends Service {
+
+    UserTypes = {
+        Candidate: "candidate",
+        Company: "company",
+        Admin: "admin"
+    };
+
+    Collections = {
+        Users: "users"
+    }
+
     constructor() {
         super()
     }
+
+    /**
+     * checkUserType checks to see if the user type is correct
+     * @param email the email of the user to check the type of
+     * @param type_val the type value to check the database against
+     * @param success if successful, run this function
+     * @param error if unsuccessful run this function.
+     */
+    checkUserType(email, type_val, success, error) {
+        this.checkFieldInDatabase(this.Collections.Users, email, "type",type_val,success,error);
+    }
+
 
 
     /**

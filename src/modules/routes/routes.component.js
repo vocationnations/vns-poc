@@ -5,6 +5,8 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import LoginComponent from "../auth/login/login.component";
 import {AuthRoutes} from "../auth/auth-routes/auth-routes.component";
 import SignupComponent from "../auth/signup/signup.component";
+import LoginCandidate from "../auth/login/login-candidate/login-candidate";
+import LoginCompany from "../auth/login/login-company/login-company";
 
 const MainRoutes = [
     {
@@ -16,8 +18,20 @@ const MainRoutes = [
     {
         name: "Login",
         path: "/login",
+        exact: true,
+        component: <LoginCandidate/>
+    },
+    {
+        name: "Login Candidate",
+        path: "/login/candidate",
         exact: false,
-        component: <LoginComponent/>
+        component: <LoginCandidate/>
+    },
+    {
+        name: "Login Company",
+        path: "/login/company",
+        exact: false,
+        component: <LoginCompany/>
     },
     {
         name: "Signup",

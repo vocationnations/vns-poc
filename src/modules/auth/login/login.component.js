@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 
 const auth_service = new AuthService();
 
-const LoginComponent = () => {
+const LoginComponent = ({userType}) => {
 
     const history = useHistory();
 
@@ -14,7 +14,22 @@ const LoginComponent = () => {
 
     const [errMessage, setErrMessage] = useState('')
 
-    const handleSignIn = () => {
+    const handleSignIn = (e) => {
+
+        e.preventDefault();
+
+
+        auth_service.checkUserType(
+            email,
+            userType,
+            (r) => {
+                console.log(r)
+            },
+            (e) => {
+               console.log(e)
+            }
+        )
+
         auth_service.userLogin(email, pass, () => {
         }, (err) => setErrMessage(err.message))
         history.push('/')
@@ -37,7 +52,7 @@ const LoginComponent = () => {
                            className="form-control"/>
                 </div>
                 <button type="submit" className="btn btn-info" onSubmit={(event) => event.preventDefault()}
-                        onClick={() => handleSignIn()}>Sign In
+                        onClick={(e) => handleSignIn}>Sign In
                 </button>
             </div>
         </div>
