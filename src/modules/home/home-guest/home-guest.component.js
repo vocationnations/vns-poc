@@ -43,7 +43,7 @@ const HomeGuestComponent = () => {
                 <div className="container">
                     <h1>VocationNations</h1>
                     <span
-                        className="text-muted font-italic">Know what you want? let us do the rest!</span>
+                        className="text-muted font-italic">Know what you want? let us do the rest! </span>
                     <div className="line"/>
                     <p className="lead w-75 mx-auto">
                         VocationNations is here to facilitate successful employment by applying advanced assessment
