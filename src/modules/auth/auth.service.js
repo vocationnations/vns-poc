@@ -1,15 +1,15 @@
 import {Service} from '../../app.service';
-import {firebaseAppAuth} from "../../config/firebase-config";
+import {Auth} from 'aws-amplify';
 
 /**
  * AuthService is responsible for taking care of various communications
  * with firebase authentication protocol
  */
 class AuthService extends Service {
+
     constructor() {
         super()
     }
-
 
     /**
      * userLogin function accesses firebase Authentication API to attempt
@@ -20,12 +20,16 @@ class AuthService extends Service {
      * @param error the callback to execute if unsuccessful
      */
     userLogin(email, password, success, error) {
-        firebaseAppAuth.signInWithEmailAndPassword(email, password)
-            .then((res) => {
-                success(res)
+        Auth.signIn(email, password)
+            .then((user) => {
+                console.log("SUCCESSFUL")
+                console.log(user)
+                success(user)
             })
-            .catch((err) => {
-                error(err)
+            .catch((e) => {
+                console.log("ERROR")
+                console.log(e)
+                error(e)
             })
     }
 
@@ -33,7 +37,9 @@ class AuthService extends Service {
      * Logs out the currently logged in user
      */
     userLogout() {
-        firebaseAppAuth.signOut();
+        Auth.signOut({
+            global: true
+        })
     }
 
 
