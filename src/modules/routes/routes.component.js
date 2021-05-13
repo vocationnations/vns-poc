@@ -28,7 +28,7 @@ const MainRoutes = [
     },
     {
         name: "Confirm",
-        path: '/confirm',
+        path: '/confirm/:email',
         component: <UserConfirmComponent/>
     }
 ]

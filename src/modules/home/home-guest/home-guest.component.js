@@ -37,7 +37,7 @@ const HomeGuestComponent = () => {
             )
                 .then((res) => {
                     console.log(res);
-                    history.push('/confirm')
+                    history.push('/confirm/' + email)
                 })
                 .catch(e => setError(e.message))
         }

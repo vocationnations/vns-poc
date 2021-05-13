@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vnspoc-dev-13832-authRole",
+      "UnauthRoleArn": "arn:aws:iam::427779414123:role/amplify-vnspoc-dev-13832-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::427779414123:role/amplify-vnspoc-dev-13832-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-vnspoc-dev-13832-deployment",
+      "UnauthRoleName": "amplify-vnspoc-dev-13832-unauthRole",
+      "StackName": "amplify-vnspoc-dev-13832",
+      "StackId": "arn:aws:cloudformation:us-west-2:427779414123:stack/amplify-vnspoc-dev-13832/0ffd6b10-b2f5-11eb-823f-02eda1aec8bb",
+      "AmplifyAppId": "d25cdbhsqdaw5s"
+    },
+    "categories": {
+      "auth": {
+        "vnspocaf97745d": {}
+      }
+    }
+  }
+}
