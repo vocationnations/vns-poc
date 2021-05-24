@@ -25,6 +25,17 @@ const HomeGuestComponent = () => {
             setError("The fields name, email and phone are required.")
         } else {
 
+            // are passwords correct
+            if (password !== confirmPass) {
+                setError("The passwords do not match!")
+            }
+
+            // is phone number accurate
+            if (!phone_match) {
+                setError("Phone number not valid!")
+            }
+
+
             Auth.signUp({
                     username: email,
                     password: password,
@@ -123,11 +134,26 @@ const HomeGuestComponent = () => {
                         <br/>
                         <label>Password</label>
                         <input
+                            autoComplete="new-password"
                             type="password"
+                            minLength="6"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$"
                             className="form-control"
                             placeholder="Choose a password"
                             required
                             onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <br/>
+                        <label>Confirm Password</label>
+                        <input
+                            autoComplete="new-password"
+                            type="password"
+                            minLength="6"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$"
+                            className="form-control"
+                            placeholder="Choose a password"
+                            required
+                            onChange={(e) => setConfirmPass(e.target.value)}
                         />
                         <br/>
 
