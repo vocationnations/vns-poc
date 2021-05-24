@@ -3,6 +3,9 @@ import './home-guest.component.css'
 import {Auth} from "aws-amplify";
 import {useHistory} from "react-router-dom";
 
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+
 const HomeGuestComponent = () => {
 
     const [name, setName] = useState("");
@@ -10,6 +13,7 @@ const HomeGuestComponent = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
@@ -20,6 +24,10 @@ const HomeGuestComponent = () => {
 
         setError("")
         setSuccess("")
+
+        // is phone correct?
+        let phone_regex = /\+1[0-9]{10}/
+        let phone_match = phone_regex.exec(phone)
 
         if (name === "" || email === "" || phone === "") {
             setError("The fields name, email and phone are required.")
@@ -158,13 +166,11 @@ const HomeGuestComponent = () => {
                         <br/>
 
                         <label>Phone</label>
-                        <input
-                            type="text"
+                        <PhoneInput
                             className="form-control"
-                            placeholder="+1 (XXX) XXX-XXXX"
-                            required
-                            onChange={(e) => setPhone(e.target.value)}
-                        />
+                            defaultCountry="CA"
+                            value={phone}
+                            onChange={setPhone}/>
                         <br/>
 
                         <button onClick={() => recordPreSignup()}
