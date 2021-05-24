@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import {firebaseAppAuth} from "../../../config/firebase-config"
+import {Auth, Hub} from 'aws-amplify';
 
 const UserContext = createContext()
 
@@ -11,14 +11,26 @@ const UserProvider = ({children}) => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        firebaseAppAuth
-            .onAuthStateChanged((user) => {
-                setUser(user)
-            })
+        Auth.currentAuthenticatedUser()
+            .then(user => setUser(user))
     }, [user])
 
+    useEffect(() => {
+
+        Hub.listen('auth', (data) => {
+            const {payload} = data;
+            console.log('new event!', data)
+            if (payload.event === 'signIn') {
+                setUser(payload.data);
+            }
+            if (payload.event === 'signOut') {
+                setUser(null);
+            }
+        })
+    }, [])
+
     return (
-        <UserContext.Provider value={{user: user}}>
+        <UserContext.Provider value={{user: user, setUser: setUser}}>
             {children}
         </UserContext.Provider>
     );

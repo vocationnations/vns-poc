@@ -21,12 +21,8 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 const firebaseAppAuth = firebaseApp.auth();
 
-const analytics = firebase.analytics();
-
-analytics.logEvent('notification_received');
 
 export {
     firebaseApp,
     firebaseAppAuth,
-    analytics
 }

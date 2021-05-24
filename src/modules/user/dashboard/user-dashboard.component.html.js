@@ -8,15 +8,26 @@ const UserDashboardComponent = () => {
 
     const history = useHistory()
 
-
     const logout = () => {
         auth_service.userLogout();
-        history.push('/');
+        history.push('/')
+
     }
 
     return (
-        <div className="container">
-            User Dashboard coming soon... <button className="btn btn-danger" onClick={() => logout()}>Logout</button>
+        <div className="container d-flex justify-content-center w-100">
+            <div className="vspacer-20"/>
+            <div className="d-flex flex-column">
+                Thank you for signing up! Our website is under construction.
+                Please check back later!
+                <br/>
+                <div className="vspacer-20"/>
+                <div className="w-50 d-flex justify-content-end">
+                    <button className="btn btn-danger"
+                            onClick={() => logout()}>Logout
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }

@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import './home-guest.component.css'
-import HomeGuestService from "./home-guest.service";
+import {Auth} from "aws-amplify";
+import {useHistory} from "react-router-dom";
 
-const home_guest_service = new HomeGuestService();
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 const HomeGuestComponent = () => {
 
@@ -10,30 +12,53 @@ const HomeGuestComponent = () => {
     const [org, setOrg] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [password, setPassword] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+
+    const history = useHistory();
 
     const recordPreSignup = () => {
 
         setError("")
         setSuccess("")
 
+        // is phone correct?
+        let phone_regex = /\+1[0-9]{10}/
+        let phone_match = phone_regex.exec(phone)
+
         if (name === "" || email === "" || phone === "") {
             setError("The fields name, email and phone are required.")
         } else {
 
-            home_guest_service.recordNewPreSignup(
-                {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    organization: org,
-                    timestamp: Math.round(Date.now())
-                },
-                () => setSuccess("Thank you for reaching out! We will be in touch soon!"),
-                (e) => setError(e.message)
+            // are passwords correct
+            if (password !== confirmPass) {
+                setError("The passwords do not match!")
+            }
+
+            // is phone number accurate
+            if (!phone_match) {
+                setError("Phone number not valid!")
+            }
+
+
+            Auth.signUp({
+                    username: email,
+                    password: password,
+                    attributes: {
+                        email: email,
+                        'custom:org': org,
+                        phone_number: phone
+                    }
+                }
             )
+                .then((res) => {
+                    console.log(res);
+                    history.push('/confirm/' + email)
+                })
+                .catch(e => setError(e.message))
         }
     }
 
@@ -46,9 +71,11 @@ const HomeGuestComponent = () => {
                         className="text-muted font-italic">Know what you want? let us do the rest! </span>
                     <div className="line"/>
                     <p className="lead w-75 mx-auto">
-                        VocationNations is here to facilitate successful employment by applying advanced assessment
+                        VocationNations is here to facilitate successful
+                        employment by applying advanced assessment
                         tools and
-                        occupational information systems to achieve good cultural and vocational fit while eliminating
+                        occupational information systems to achieve good
+                        cultural and vocational fit while eliminating
                         discrimination barriers.
                         <div className="line"/>
                         <div className="col-lg-12">
@@ -62,36 +89,47 @@ const HomeGuestComponent = () => {
                     </p>
                 </div>
             </section>
-            <section className="formSection p-0">
+            <section className="formSection p-0 pb-5">
                 <div className="container p-5">
                     <h1 className="text-center text-uppercase">pre-signup</h1>
                     <p className="lead">
-                        We're still developing our awesome application, but in the meantime, please signup below so that
-                        we can ping you once we're ready! We will not share your data or spam you with constant emails.
+                        We're still developing our awesome application, but in
+                        the meantime, please signup below so that
+                        we can ping you once we're ready! We will not share your
+                        data or spam you with constant emails.
 
                         You will hear from us when we launch BETA Summer 2021.
                     </p>
-                    <div className="w-50 mx-auto">
-                        {error !== "" && <div className="alert alert-danger">{error}</div>}
-                        {success !== "" && <div className="alert alert-success">{success}</div>}
+                    <div className="w-75 mx-auto">
+                        {error !== "" &&
+                        <div className="alert alert-danger">{error}</div>}
+                        {success !== "" &&
+                        <div className="alert alert-success">{success}</div>}
                         <div className="vspacer-20"/>
-                        <label>Name</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Your Name"
-                            required
-                            onChange={(e) => setName(e.target.value)}/>
-                        <br/>
+                        <div
+                            className="d-flex flex-row justify-content-between">
+                            <div className="d-flex flex-column w-100 mr-5">
+                                <label>Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Your Name"
+                                    required
+                                    onChange={(e) => setName(e.target.value)}/>
+                                <br/>
+                            </div>
 
-                        <label>Organization (optional)</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Your Organization"
-                            onChange={(e) => setOrg(e.target.value)}
-                        />
-                        <br/>
+                            <div className="d-flex flex-column w-75">
+                                <label>Organization (optional)</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Your Organization"
+                                    onChange={(e) => setOrg(e.target.value)}
+                                />
+                                <br/>
+                            </div>
+                        </div>
 
                         <label>Email</label>
                         <input
@@ -102,18 +140,42 @@ const HomeGuestComponent = () => {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <br/>
-
-                        <label>Phone</label>
+                        <label>Password</label>
                         <input
-                            type="text"
+                            autoComplete="new-password"
+                            type="password"
+                            minLength="6"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$"
                             className="form-control"
-                            placeholder="+1 (XXX) XXX-XXXX"
+                            placeholder="Choose a password"
                             required
-                            onChange={(e) => setPhone(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <br/>
+                        <label>Confirm Password</label>
+                        <input
+                            autoComplete="new-password"
+                            type="password"
+                            minLength="6"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$"
+                            className="form-control"
+                            placeholder="Choose a password"
+                            required
+                            onChange={(e) => setConfirmPass(e.target.value)}
                         />
                         <br/>
 
-                        <button onClick={() => recordPreSignup()} className="btn btn-primary btn-info">Sign up!</button>
+                        <label>Phone</label>
+                        <PhoneInput
+                            className="form-control"
+                            defaultCountry="CA"
+                            value={phone}
+                            onChange={setPhone}/>
+                        <br/>
+
+                        <button onClick={() => recordPreSignup()}
+                                className="btn btn-primary btn-info">Sign up!
+                        </button>
                     </div>
                 </div>
             </section>

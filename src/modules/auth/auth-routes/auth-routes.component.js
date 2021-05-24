@@ -1,5 +1,6 @@
 import React from 'react';
-import UserDashboardComponent from "../../user/dashboard/user-dashboard.component.html";
+import UserDashboardComponent
+    from "../../user/dashboard/user-dashboard.component.html";
 
 const AuthRoutes = [
     {
@@ -7,7 +8,7 @@ const AuthRoutes = [
         path: "/",
         exact: true,
         component: <UserDashboardComponent/>
-    },
+    }
 ]
 
 export {
