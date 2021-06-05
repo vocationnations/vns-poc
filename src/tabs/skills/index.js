@@ -23,14 +23,15 @@ const SkillsSelectionTab = ({advanceStep, update}) => {
   return (
     <div className="container">
       <form>
+
         <div className="form-group">
           <label>Skills</label>
-          <input type="text" className="form-control" placeholder="Semi-colon separated skills" value={skillNames} onChange={(e) => setSkillNames(e.target.value)} />
+          <input type="text" className="form-control" placeholder="Semi-colon separated skills" onChange={(e) => setSkillNames(e.target.value)} />
           <small className="form-text text-muted"><i>e.g.,</i> Python;Java;Interpersonal</small>
         </div>
         <div className="form-group">
           <label>Values</label>
-          <input type="text" className="form-control" placeholder="Semi-colon separated skills" value={skillValues} onChange={(e) => setSkillValues(e.target.value)} />
+          <input type="text" className="form-control" placeholder="Semi-colon separated skills" onChange={(e) => setSkillValues(e.target.value)} />
           <small className="form-text text-muted"><i>e.g.,</i> 40;50;60</small>
         </div>
       </form>

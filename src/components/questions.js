@@ -37,7 +37,7 @@ const questions = [
   },
   {
     title: "Dominant Characteristics",
-    question: "Do you prefer Do you prefer an oreganization that is...",
+    question: "Do you prefer an oreganization that is...",
     clan_option: "A very personal place. It is like an extended family. People seem to share a lot of themselves",
     adhocracy_option: "A very dynamic and entrepreneurial place. People are willing to stick their necks out and take risks.",
     market_option: "Very results oriented. A major concern is with getting the job done. People are very competitive and achievement oriented.",

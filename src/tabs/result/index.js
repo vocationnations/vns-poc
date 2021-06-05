@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import AlgorithmService from '../../service/algorithm';
-
-const algorithm_service = new AlgorithmService();
 
 const ResultsTab = ({candidateSkills, candidateCulture, employerSkills, employerCulture, candidateWorth, employerWorth}) => {
 
@@ -125,15 +122,6 @@ const ResultsTab = ({candidateSkills, candidateCulture, employerSkills, employer
     data['candidate']['skills'] = candidateSkills
     data['employer']['skills'] = employerSkills
 
-    algorithm_service.calculateScore(
-        data,
-        (res) => {
-          setResults(res);
-        },
-        (err) => {
-          setError('ERROR: Cannot fetch results: ' + err.message)
-        }
-    )
     console.log(data);
   },[])
 
