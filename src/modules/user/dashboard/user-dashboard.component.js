@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useHistory} from 'react-router-dom';
 import AuthService from "../../auth/auth.service";
 import {useUser} from "../../auth/context/user-provider";
@@ -21,8 +21,13 @@ const UserDashboardComponent = () => {
 
     return (
         <div
-            className="container-fluid d-flex justify-content-center w-100 border-black pt-3">
+            className="container-fluid d-flex flex-column justify-content-center w-100 border-black pt-3">
             <div className="vspacer-20"/>
+            <div className="col-lg-12 border-black">
+                <button className="btn btn-danger"
+                        onClick={() => logout()}>Logout
+                </button>
+            </div>
             <div
                 className="container-fluid main-panel p-2 border-red text-center">
                 <h4 className="text-uppercase font-weight-bold">VocationNations

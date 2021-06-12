@@ -53,27 +53,30 @@ const questions = [
   }
 ]
 
-const Questions = ({setDone,setScores}) => {
+const Questions = ({setDone, setFinalData}) => {
   const [questionNumber, setQuestionNumber] = useState(0);
 
   const advanceQuestion = () => {
-        if(questions.length-1 === questionNumber) {
-          setDone(true);
-        }
-        setQuestionNumber((prev) => prev + 1)
+
+    if (questions.length - 1 === questionNumber) {
+      setDone(true);
+    }
+    setQuestionNumber((prev) => prev + 1)
   }
 
   return (
-    <div className="container">
-      {
-        questions.length > questionNumber ? (
-            <Question question_data={questions[questionNumber]} setScores={setScores} advanceQuestion={advanceQuestion}
-                      questionNumber={questionNumber}/>
-        ) : (
-          <div>Finished answering candidate questions! Proceed to next step!<br /><br /></div>
-        )
-      }
-    </div>
+      <div className="">
+        {
+          questions.length > questionNumber ? (
+              <Question question_data={questions[questionNumber]}
+                        setData={setFinalData} advanceQuestion={advanceQuestion}
+                        questionNumber={questionNumber}/>
+          ) : (
+              <div>Finished answering candidate questions! Proceed to next step!<br/><br/>
+              </div>
+          )
+        }
+      </div>
   )
 }
 

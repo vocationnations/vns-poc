@@ -20,3 +20,7 @@ code {
 .border-red {
     border: 1px solid red;
 }
+
+.w-15 {
+    width: 15% !important;
+}

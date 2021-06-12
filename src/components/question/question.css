@@ -1,0 +1,24 @@
+.rank1 {
+    border: 1px solid #B6C882;
+    background-color: #DBEAB1 !important;
+}
+
+.rank2 {
+    border: 1px solid #85924B;
+    background-color: #A9B282 !important;
+}
+
+.rank3 {
+    border: 1px solid #C8C634;
+    background-color: #D6D42F !important;
+}
+
+.rank4 {
+    border: 1px solid #D6BA2F;
+    background-color: #EDD769 !important;
+}
+
+.bin {
+    border: 1px solid red;
+    background-color: #F3B6C8 !important;
+}
