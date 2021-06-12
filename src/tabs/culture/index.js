@@ -1,21 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Questions from '../../components/questions';
 
 const CultureSelectionTab = ({advanceStep,update}) => {
   const [done, setDone] = useState(false);
-  const [scores,setScores] = useState({});
+  const [finalData, setFinalData] = useState([]);
 
   useEffect(() => {
     if(done) {
-      update(scores);
+      update(finalData);
     }
   },[done])
 
   return (
-    <div className="container">
-        <Questions setDone={setDone} setScores={setScores}/>
-        { done && <button className="btn btn-success" onClick={() => advanceStep()}>Next</button> }
-    </div>
+      <div className="container-fluid">
+        <Questions setDone={setDone} setFinalData={setFinalData}/>
+        {done && <button className="btn btn-success"
+                         onClick={() => advanceStep()}>Next</button>}
+      </div>
   )
 }
 

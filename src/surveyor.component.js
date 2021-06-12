@@ -1,45 +1,53 @@
 import React, {useState} from 'react';
-import {CultureSelectionTab, ResultsTab, SkillsSelectionTab, WorthTab} from './tabs';
+import {CultureSelectionTab, SkillsSelectionTab, WorthTab} from './tabs';
 import './vns-poc.css'
-
+import RegisterUserData from "./tabs/register-user-data/register-user-data";
 
 
 const SurveyorComponent = () => {
 
-    const [stepNumber, setStepNumber] = useState(0);
+    const [stepNumber, setStepNumber] = useState(1);
 
     const [skillsInput, setSkillsInput] = useState(null);
     const [cultureInput, setCultureInput] = useState(null);
-
-    const [candidateWorth, setCandidateWorth] = useState({});
-    const [employerWorth, setEmployerWorth] = useState({});
-
-    const updateWorth = (candidateWorth, employerWorth) => {
-        setCandidateWorth(candidateWorth)
-        setEmployerWorth(employerWorth)
-    }
+    const [worthInput, setWorkflowInput] = useState(null);
 
     const advanceStep = () => {
 
-        if(skillsInput == null || cultureInput == null) {
+        console.log("STEP NUMBER: " + stepNumber);
+
+        if (skillsInput !== null && cultureInput !== null) {
+
+        }
+
+        if (stepNumber < steps.length) {
             setStepNumber((prev) => {
                 return prev + 1;
             })
-        } else {
-            console.log(skillsInput)
-            console.log(cultureInput)
         }
-
     }
 
     const steps = [
         {
             name: 'Input skills',
-            component: <SkillsSelectionTab advanceStep={advanceStep} update={setSkillsInput}/>
+            component: <SkillsSelectionTab advanceStep={advanceStep}
+                                           update={setSkillsInput}/>
         },
         {
             name: 'Input culture',
-            component: <CultureSelectionTab advanceStep={advanceStep} update={setCultureInput}/>
+            component: <CultureSelectionTab advanceStep={advanceStep}
+                                            update={setCultureInput}/>
+        },
+        {
+            name: "Worth",
+            component: <WorthTab advanceStep={advanceStep}
+                                 update={setWorkflowInput}/>
+        },
+        {
+            name: "Thank you",
+            component: <RegisterUserData skills={skillsInput}
+                                         culture={cultureInput}
+                                         worth={worthInput}/>
         }
     ]
 
