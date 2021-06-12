@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
 
+import './question.css'
+
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -42,28 +44,9 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     ...draggableStyle
 });
 
-const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? 'lightblue' : 'lightgrey',
-    padding: grid,
-    width: 100,
-});
-
 class Question extends Component {
 
-    question_data = this.props.question_data;
-    sentences = [
-        {id: 'clan', content: this.question_data.clan_option},
-        {id: 'adhocracy', content: this.question_data.adhocracy_option},
-        {id: 'market', content: this.question_data.market_option},
-        {id: 'hierarchy', content: this.question_data.hierarchy_option},
-    ]
-    state = {
-        rank1: this.sentences,
-        rank2: [],
-        rank3: [],
-        rank4: [],
-        bin: []
-    };
+
     /**
      * A semi-generic way to handle multiple lists. Matches
      * the IDs of the droppable container to the names of the
@@ -79,7 +62,29 @@ class Question extends Component {
 
     constructor(props) {
         super(props)
+
+        this.state = {
+            id: this.props.question_data.title,
+            rank1: [
+                {id: 'clan', content: this.props.question_data.clan_option},
+                {
+                    id: 'adhocracy',
+                    content: this.props.question_data.adhocracy_option
+                },
+                {id: 'market', content: this.props.question_data.market_option},
+                {
+                    id: 'hierarchy',
+                    content: this.props.question_data.hierarchy_option
+                },
+            ],
+            rank2: [],
+            rank3: [],
+            rank4: [],
+            bin: []
+        }
+
         this.saveScore = this.saveScore.bind(this);
+
     }
 
     getList = id => this.state[this.id2List[id]];
@@ -94,15 +99,11 @@ class Question extends Component {
         }
 
         if (source.droppableId === destination.droppableId) {
-            console.log("DROPPING IT IN SAME RANK")
             const items = reorder(
                 this.getList(source.droppableId),
                 source.index,
                 destination.index
             );
-
-            console.log("ITEMS ARE:")
-            console.log(items);
 
             let state = {items};
 
@@ -145,65 +146,67 @@ class Question extends Component {
         }
     };
 
+    componentDidUpdate(prevProps, prevState) {
+
+        if (prevProps.question_data.title !== this.props.question_data.title) {
+            console.log(this.props.question_data);
+            let new_state = {
+                rank1: [
+                    {id: 'clan', content: this.props.question_data.clan_option},
+                    {
+                        id: 'adhocracy',
+                        content: this.props.question_data.adhocracy_option
+                    },
+                    {
+                        id: 'market',
+                        content: this.props.question_data.market_option
+                    },
+                    {
+                        id: 'hierarchy',
+                        content: this.props.question_data.hierarchy_option
+                    },
+                ],
+                rank2: [],
+                rank3: [],
+                rank4: [],
+                bin: []
+            }
+            this.setState(new_state)
+        }
+
+    }
+
     saveScore = () => {
 
-        let domains = {
-            'hierarchy': 0,
-            'clan': 0,
-            'adhocracy': 0,
-            'market': 0
+        console.log("SAVING SCORE...")
+        const user_answer = {
+            "question_title": this.props.question_data.title,
+            "question": this.props.question_data.question,
+            "answer": this.state
+
         }
 
-        for (let i = 0; i < this.state.rank1.length; i++) {
-            let sid = this.state.rank1[i].id
-            domains [sid] += 100
-        }
 
-        for (let i = 0; i < this.state.rank2.length; i++) {
-            let sid = this.state.rank2[i].id
-            domains [sid] += 75
-        }
-
-        for (let i = 0; i < this.state.rank3.length; i++) {
-            let sid = this.state.rank3[i].id
-            domains [sid] += 50
-        }
-
-        for (let i = 0; i < this.state.rank4.length; i++) {
-            let sid = this.state.rank4[i].id
-            domains [sid] += 25
-        }
-
-        for (let i = 0; i < this.state.bin.length; i++) {
-            let sid = this.state.bin[i].id
-            domains [sid] -= 25
-        }
-
-        console.log(domains);
-
-
-        this.props.setScores(
-            prev => ({
-                ...prev,
-                domains
-            })
+        this.props.setData(
+            prev => [...prev, user_answer]
         )
+
         this.props.advanceQuestion();
     }
 
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
-        return (
-            <div className="container">
+        return this.props.question_data !== null && (
+            <div className="container-fluid w-100 p-0">
+                <h1>{this.props.question_data.title}</h1>
                 <DragDropContext onDragEnd={this.onDragEnd}>
-                    <div className="row">
+                    <div className="row justify-content-center">
                         <Droppable droppableId="rank1">
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5"
-                                    style={getListStyle(snapshot.isDraggingOver)}>
+                                    className="mr-5 w-15 rank1 p-2">
                                     {this.state.rank1.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -231,8 +234,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5"
-                                    style={getListStyle(snapshot.isDraggingOver)}>
+                                    className="mr-5 w-15 rank2 p-2">
                                     {this.state.rank2.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -260,8 +262,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5"
-                                    style={getListStyle(snapshot.isDraggingOver)}>
+                                    className="mr-5 w-15 rank3 p-2">
                                     {this.state.rank3.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -289,8 +290,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5"
-                                    style={getListStyle(snapshot.isDraggingOver)}>
+                                    className="mr-5 w-15 rank4 p-2">
                                     {this.state.rank4.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -318,8 +318,8 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5"
-                                    style={getListStyle(snapshot.isDraggingOver)}>
+                                    className="mr-5 w-15 bin p-2"
+                                >
                                     {this.state.bin.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -346,7 +346,9 @@ class Question extends Component {
 
                     </div>
                 </DragDropContext>
-                <button className="btn btn-primary" onClick={() => this.saveScore()}>Next</button>
+                <button className="btn btn-primary"
+                        onClick={() => this.saveScore()}>Next
+                </button>
             </div>
         );
     }
