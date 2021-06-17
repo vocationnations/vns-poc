@@ -1,0 +1,64 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vnspoc-dev-13832-authRole",
+      "UnauthRoleArn": "arn:aws:iam::427779414123:role/amplify-vnspoc-dev-13832-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::427779414123:role/amplify-vnspoc-dev-13832-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-vnspoc-dev-13832-deployment",
+      "UnauthRoleName": "amplify-vnspoc-dev-13832-unauthRole",
+      "StackName": "amplify-vnspoc-dev-13832",
+      "StackId": "arn:aws:cloudformation:us-west-2:427779414123:stack/amplify-vnspoc-dev-13832/0ffd6b10-b2f5-11eb-823f-02eda1aec8bb",
+      "AmplifyAppId": "d25cdbhsqdaw5s"
+    }
+  },
+  "auth": {
+    "vnspocaf97745d": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-vnspoc-dev-13832-deployment/amplify-cfn-templates/auth/vnspocaf97745d-cloudformation-template.yml",
+        "logicalId": "authvnspocaf97745d"
+      },
+      "lastPushTimeStamp": "2021-06-17T03:05:10.391Z",
+      "output": {
+        "UserPoolId": "us-west-2_IOlrhoBn4",
+        "AppClientIDWeb": "1rfpm3m42lgsn705nmg198rid",
+        "AppClientID": "24gql6u73ujvpjl37rkad6jhgq",
+        "IdentityPoolId": "us-west-2:ce272286-acc5-4f5e-8204-99db523ff4e2",
+        "IdentityPoolName": "vnspocaf97745d_identitypool_af97745d__dev",
+        "UserPoolName": "vnspocaf97745d_userpool_af97745d",
+        "HostedUIDomain": "vnspocc71e6973-c71e6973-dev",
+        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}"
+      },
+      "lastPushDirHash": "52nTt5iMzTtDo9chXBkssz2MKnA="
+    },
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "vnspocaf97745d",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ],
+      "lastPushTimeStamp": "2021-06-17T03:05:10.391Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-vnspoc-dev-13832-deployment/amplify-cfn-templates/auth/template.json",
+        "logicalId": "authuserPoolGroups"
+      },
+      "output": {
+        "vnsmainGroupRole": "arn:aws:iam::427779414123:role/us-west-2_IOlrhoBn4-vnsmainGroupRole"
+      },
+      "lastPushDirHash": "xYkxI05Nxoui9WtI+shjjakvuTE="
+    }
+  }
+}

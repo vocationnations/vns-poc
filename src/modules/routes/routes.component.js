@@ -1,7 +1,7 @@
 import React from 'react';
 import {useUser} from '../auth/context/user-provider';
 import HomeGuestComponent from "../home/home-guest/home-guest.component";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {HashRouter as Router, Route} from "react-router-dom";
 import LoginComponent from "../auth/login/login.component";
 import {AuthRoutes} from "../auth/auth-routes/auth-routes.component";
 import SignupComponent from "../auth/signup/signup.component";
