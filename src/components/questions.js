@@ -37,7 +37,7 @@ const questions = [
   },
   {
     title: "Dominant Characteristics",
-    question: "Do you prefer Do you prefer an oreganization that is...",
+    question: "Do you prefer an oreganization that is...",
     clan_option: "A very personal place. It is like an extended family. People seem to share a lot of themselves",
     adhocracy_option: "A very dynamic and entrepreneurial place. People are willing to stick their necks out and take risks.",
     market_option: "Very results oriented. A major concern is with getting the job done. People are very competitive and achievement oriented.",
@@ -53,27 +53,30 @@ const questions = [
   }
 ]
 
-const Questions = ({setDone,setScores}) => {
+const Questions = ({setDone, setFinalData}) => {
   const [questionNumber, setQuestionNumber] = useState(0);
 
   const advanceQuestion = () => {
-        if(questions.length-1 === questionNumber) {
-          setDone(true);
-        }
-        setQuestionNumber((prev) => prev + 1)
+
+    if (questions.length - 1 === questionNumber) {
+      setDone(true);
+    }
+    setQuestionNumber((prev) => prev + 1)
   }
 
   return (
-    <div className="container">
-      {
-        questions.length > questionNumber ? (
-            <Question question_data={questions[questionNumber]} setScores={setScores} advanceQuestion={advanceQuestion}
-                      questionNumber={questionNumber}/>
-        ) : (
-          <div>Finished answering candidate questions! Proceed to next step!<br /><br /></div>
-        )
-      }
-    </div>
+      <div className="">
+        {
+          questions.length > questionNumber ? (
+              <Question question_data={questions[questionNumber]}
+                        setData={setFinalData} advanceQuestion={advanceQuestion}
+                        questionNumber={questionNumber}/>
+          ) : (
+              <div>Finished answering candidate questions! Proceed to next step!<br/><br/>
+              </div>
+          )
+        }
+      </div>
   )
 }
 

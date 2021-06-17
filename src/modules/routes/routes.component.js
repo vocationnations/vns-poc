@@ -1,10 +1,11 @@
 import React from 'react';
-import {useUser} from '../auth/context/user-provider';
 import HomeGuestComponent from "../home/home-guest/home-guest.component";
 import {HashRouter as Router, Route} from "react-router-dom";
 import LoginComponent from "../auth/login/login.component";
 import {AuthRoutes} from "../auth/auth-routes/auth-routes.component";
 import SignupComponent from "../auth/signup/signup.component";
+import {useUser} from "../auth/context/user-provider";
+import UserConfirmComponent from "../user/confirm/user-confirm.component";
 
 const MainRoutes = [
     {
@@ -24,6 +25,11 @@ const MainRoutes = [
         path: "/signup",
         exact: false,
         component: <SignupComponent/>
+    },
+    {
+        name: "Confirm",
+        path: '/confirm/:email',
+        component: <UserConfirmComponent/>
     }
 ]
 
@@ -31,7 +37,7 @@ const RoutesComponent = () => {
 
     const {user} = useUser();
 
-    const RouteList = user !== null ? AuthRoutes : MainRoutes;
+    const RouteList = user ? AuthRoutes : MainRoutes;
 
 
     return (
