@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>VocationNations -- Algorithm UI</h1>
+    <h1>VocationNations Proof of concept</h1>
     <br /><i>The ReactJS-based front-end around the GoLang algorithm to visualize the process of answering the skill and culture questions to obtain the final percent match for both creators and employers in terms of their percent match between eachother.</i><br>
 </div>
 
