@@ -7,9 +7,9 @@
 
 # Table of contents
 
-1. [Installation](#2-installation)
-2. [Usage](#2)
-3. [Feedback and bug reports]F(#2) 
+1. [Installation](#1-installation)
+2. [Usage](#2-Usage)
+3. [Feedback and bug reports]F(#3-Feeback and bug reports) 
 
 
 ## 1. Installation
