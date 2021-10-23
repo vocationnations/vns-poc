@@ -9,7 +9,7 @@
 
 1. [Installation](#1-installation)
 2. [Usage](#2-Usage)
-3. [Feedback and bug reports]F(#3-Feebackandbugreports) 
+3. [Feedback and bug reports](#3-Feebackandbugreports) 
 
 
 ## 1. Installation
