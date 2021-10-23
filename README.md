@@ -9,15 +9,31 @@
 
 1. [Installation](#1-installation)
 2. [Usage](#2-Usage)
-3. [Feedback and bug reports]F(#3-Feeback and bug reports) 
+3. [Feedback and bug reports]F(#3-Feebackandbugreports) 
 
 
 ## 1. Installation
-
+    Using command line, cd to the file where you want to download the file. 
+    '$git clone "url for repo"'
+    
+    Dependency:
+    In order to run this repo. You need to download npm. Follow the instructions on this link: https://docs.npmjs.com/getting-started
 ## 2. Usage
-
+    In order to use the repo you just downloaded, along with npm.
+    
+    Open the repo in your favourite IDE (Webstorm etc...)
+    
+    From command line enter the following commands:
+    First Command:
+    '$npm install'
+    
+    Second Command:
+    '$npm start'
+    
 ## 3. Feedback and bug reports
 
-Submit feedback and bug reports by using the Issues section of the repository.
+Submit feedback and bug reports by using the Issues section of the repository. 
+
+Thank you so much for your feedback team!
 
 
