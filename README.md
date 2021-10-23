@@ -8,15 +8,15 @@
 # Table of contents
 
 1. [Installation](#2-installation)
-1. [GenoAssist Usage](#3-usage)
-1. [Feedback and bug reports](#4-feedback-and-bug-reports)
+2. [Usage](#2)
+3. [Feedback and bug reports]F(#2) 
 
 
-## 2. Installation
+## 1. Installation
 
-## 3. Usage
+## 2. Usage
 
-## 4. Feedback and bug reports
+## 3. Feedback and bug reports
 
 Submit feedback and bug reports by using the Issues section of the repository.
 
