@@ -199,7 +199,7 @@ class Question extends Component {
     render() {
         return this.props.question_data !== null && (
             <div className="container-fluid w-100 p-0">
-                <h1>{this.props.question_data.title}</h1>
+                <h1>{this.props.question_data.question}</h1>
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className="row justify-content-center">
                         <Droppable droppableId="rank1">
