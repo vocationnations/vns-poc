@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Question from './question/index';
 
 
@@ -53,16 +53,37 @@ const questions = [
   }
 ]
 
-const Questions = ({setDone, setFinalData}) => {
-  const [questionNumber, setQuestionNumber] = useState(0);
+const Questions = ({setDone, setFinalData, setRadialData}) => {
+  const [questionNumber, setQuestionNumber]   = useState(0);
+  const [numericalScores, setNumericalScores] = useState({
+    "adhocracy": 0, "hierarchy": 0, "clan": 0, "market": 0
+  })
 
   const advanceQuestion = () => {
 
     if (questions.length - 1 === questionNumber) {
       setDone(true);
     }
-    setQuestionNumber((prev) => prev + 1)
+    setQuestionNumber((prev) => {
+      return prev += 1
+    })
+
   }
+
+  useEffect(() => {
+    console.log(numericalScores);
+
+    let raw_numerical_scores = Object.values(numericalScores)
+    console.log(raw_numerical_scores)
+    let final_radial_scores = []
+    console.log(questionNumber)
+    for (let i = 0, length = raw_numerical_scores.length; i < length; i++) {
+      final_radial_scores[i] = raw_numerical_scores[i] / questionNumber;
+    }
+    console.log(final_radial_scores)
+    setRadialData(final_radial_scores)
+
+  }, [numericalScores])
 
   return (
       <div className="">
@@ -70,7 +91,9 @@ const Questions = ({setDone, setFinalData}) => {
           questions.length > questionNumber ? (
               <Question question_data={questions[questionNumber]}
                         setData={setFinalData} advanceQuestion={advanceQuestion}
-                        questionNumber={questionNumber}/>
+                        questionNumber={questionNumber}
+                        setNumericalScores={setNumericalScores}
+              />
           ) : (
               <div>Finished answering candidate questions! Proceed to next step!<br/><br/>
               </div>
