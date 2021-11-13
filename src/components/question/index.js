@@ -73,7 +73,7 @@ class Question extends Component {
                 },
                 {id: 'market', content: this.props.question_data.market_option},
                 {
-                    id: 'hierarchy',
+                    id     : 'hierarchy',
                     content: this.props.question_data.hierarchy_option
                 },
             ],
@@ -83,7 +83,8 @@ class Question extends Component {
             bin: []
         }
 
-        this.saveScore = this.saveScore.bind(this);
+        this.saveScore             = this.saveScore.bind(this);
+        this.calculateScoreForClan = this.calculateScoreForClan.bind(this)
 
     }
 
@@ -169,9 +170,115 @@ class Question extends Component {
                 rank2: [],
                 rank3: [],
                 rank4: [],
-                bin: []
+                bin  : []
             }
             this.setState(new_state)
+        }
+
+    }
+
+    calculateScoreForClan = (state) => {
+        let adhocracy = 0
+        let market    = 0
+        let hierarchy = 0
+        let clan      = 0
+
+        state.rank1.forEach(r => {
+            switch (r.id) {
+                case "clan":
+                    clan += 100
+                    break;
+                case "adhocracy":
+                    adhocracy += 100
+                    break;
+                case "market":
+                    market += 100;
+                    break;
+                case "hierarchy":
+                    hierarchy += 100
+                    break;
+                default:
+                    break;
+            }
+        })
+        state.rank2.forEach(r => {
+            switch (r.id) {
+                case "clan":
+                    clan += 75
+                    break;
+                case "adhocracy":
+                    adhocracy += 75
+                    break;
+                case "market":
+                    market += 75;
+                    break;
+                case "hierarchy":
+                    hierarchy += 75
+                    break;
+                default:
+                    break;
+            }
+        })
+        state.rank3.forEach(r => {
+            switch (r.id) {
+                case "clan":
+                    clan += 50
+                    break;
+                case "adhocracy":
+                    adhocracy += 50
+                    break;
+                case "market":
+                    market += 50;
+                    break;
+                case "hierarchy":
+                    hierarchy += 50
+                    break;
+                default:
+                    break;
+            }
+        })
+        state.rank4.forEach(r => {
+            switch (r.id) {
+                case "clan":
+                    clan += 25
+                    break;
+                case "adhocracy":
+                    adhocracy += 25
+                    break;
+                case "market":
+                    market += 25;
+                    break;
+                case "hierarchy":
+                    hierarchy += 25
+                    break;
+                default:
+                    break;
+            }
+        })
+        state.bin.forEach(r => {
+            switch (r.id) {
+                case "clan":
+                    clan += 0
+                    break;
+                case "adhocracy":
+                    adhocracy += 0
+                    break;
+                case "market":
+                    market += 0;
+                    break;
+                case "hierarchy":
+                    hierarchy += 0
+                    break;
+                default:
+                    break;
+            }
+        })
+
+        return {
+            "adhocracy": adhocracy,
+            "market"   : market,
+            "clan"     : clan,
+            "hierarchy": hierarchy
         }
 
     }
@@ -181,10 +288,22 @@ class Question extends Component {
         console.log("SAVING SCORE...")
         const user_answer = {
             "question_title": this.props.question_data.title,
-            "question": this.props.question_data.question,
-            "answer": this.state
+            "question"      : this.props.question_data.question,
+            "answer"        : this.state
 
         }
+
+        let numerical_scores = this.calculateScoreForClan(this.state)
+        this.props.setNumericalScores(
+            prev => {
+                return {
+                    adhocracy: prev.adhocracy + numerical_scores.adhocracy,
+                    hierarchy: prev.hierarchy + numerical_scores.hierarchy,
+                    clan     : prev.clan + numerical_scores.clan,
+                    market   : prev.market + numerical_scores.market,
+                }
+            }
+        )
 
 
         this.props.setData(
