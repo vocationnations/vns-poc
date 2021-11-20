@@ -76,9 +76,27 @@ html {
     text-transform: uppercase;
 }
 
-.formSection {
-    height: 100vh;
+.userTypeSelectionSection {
     background: #F6E7C9;
+    padding-bottom: 5% !important;
+}
+
+.userTypeSelectionSection > .container > h1 {
+    font-family: 'Alata', sans-serif;
+    font-size: 45px !important;
+    text-transform: uppercase;
+}
+
+.salesPitchSection {
+    background: #efc5b8;
+    min-height: 100vh;
+    padding-bottom: 10% !important;
+}
+
+.salesPitchSection > .container > h1 {
+    font-family: 'Alata', sans-serif;
+    font-size: 45px !important;
+    text-transform: uppercase;
 }
 
 .line {
