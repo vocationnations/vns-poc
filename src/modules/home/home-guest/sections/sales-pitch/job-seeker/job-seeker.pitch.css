@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Rambla:wght@700&display=swap');
+
+h6 {
+    font-family : 'Rambla', sans-serif;
+    font-weight : bolder;
+    font-size   : 20px;
+}

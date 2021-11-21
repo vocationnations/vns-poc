@@ -1,10 +1,14 @@
+html {
+    scroll-behavior : smooth;
+}
+
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin                  : 0;
+    font-family             : -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing  : antialiased;
+    -moz-osx-font-smoothing : grayscale;
 }
 
 code {
@@ -18,9 +22,42 @@ code {
 }
 
 .border-red {
-    border: 1px solid red;
+    border : 1px solid red;
 }
 
 .w-15 {
-    width: 15% !important;
+    width : 15% !important;
+}
+
+.vspacer-20 {
+    height : 20px;
+}
+
+.vspacer-30 {
+    height : 30px;
+}
+
+.vspacer-50 {
+    height : 50px;
+}
+
+.chevron {
+    position : relative;
+    display  : block;
+    height   : 50px; /*Height should be double border thickness*/
+}
+
+.chevron::before,
+.chevron::after {
+    position : absolute;
+    display  : block;
+    content  : "";
+    border   : 25px solid transparent; /*Adjust chevron size*/
+}
+
+/*Change the four instances of 'top' below to rotate chevron*/
+/*Use (top/right/bottom/left) where you want the back of the chevron to be*/
+.chevron::before {
+    bottom           : 0;
+    border-top-color : #b00; /*Chevron Color*/
 }

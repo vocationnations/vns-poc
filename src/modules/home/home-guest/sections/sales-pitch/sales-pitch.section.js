@@ -7,14 +7,16 @@ const SalesPitchSection = ({userType}) => {
 
     if(userType === APP.JobSeeker) {
         return (
-            <section className="salesPitchSection p-0">
-                <JobSeekerPitch />
+            <section className="salesPitchSection p-0"
+                     id="salesPitchSectionJobSeeker">
+                <JobSeekerPitch/>
             </section>
         );
     } else {
         return (
-            <section className="salesPitchSection p-0">
-                <EmployerPitch />
+            <section className="salesPitchSection p-0"
+                     id="salesPitchSectionEmployer">
+                <EmployerPitch/>
             </section>
         );
     }
