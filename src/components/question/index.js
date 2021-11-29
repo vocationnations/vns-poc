@@ -53,6 +53,7 @@ class Question extends Component {
      * source arrays stored in the state.
      */
     id2List = {
+        rank0: 'rank0',
         rank1: 'rank1',
         rank2: 'rank2',
         rank3: 'rank3',
@@ -65,7 +66,7 @@ class Question extends Component {
 
         this.state = {
             id: this.props.question_data.title,
-            rank1: [
+            rank0: [
                 {id: 'clan', content: this.props.question_data.clan_option},
                 {
                     id: 'adhocracy',
@@ -77,6 +78,7 @@ class Question extends Component {
                     content: this.props.question_data.hierarchy_option
                 },
             ],
+            rank1: [],
             rank2: [],
             rank3: [],
             rank4: [],
@@ -109,6 +111,9 @@ class Question extends Component {
             let state = {items};
 
             switch (source.droppableId) {
+                case 'rank0':
+                    state = {rank0: items};
+                    break;
                 case 'rank1':
                     state = {rank1: items};
                     break;
@@ -152,7 +157,7 @@ class Question extends Component {
         if (prevProps.question_data.title !== this.props.question_data.title) {
             console.log(this.props.question_data);
             let new_state = {
-                rank1: [
+                rank0: [
                     {id: 'clan', content: this.props.question_data.clan_option},
                     {
                         id: 'adhocracy',
@@ -167,6 +172,7 @@ class Question extends Component {
                         content: this.props.question_data.hierarchy_option
                     },
                 ],
+                rank1: [],
                 rank2: [],
                 rank3: [],
                 rank4: [],
@@ -183,6 +189,25 @@ class Question extends Component {
         let hierarchy = 0
         let clan      = 0
 
+        // initial state
+        state.rank0.forEach(r => {
+            switch (r.id) {
+                case "clan":
+                    clan += 0
+                    break;
+                case "adhocracy":
+                    adhocracy += 0
+                    break;
+                case "market":
+                    market += 0;
+                    break;
+                case "hierarchy":
+                    hierarchy += 0
+                    break;
+                default:
+                    break;
+            }
+        })
         state.rank1.forEach(r => {
             switch (r.id) {
                 case "clan":
@@ -258,16 +283,16 @@ class Question extends Component {
         state.bin.forEach(r => {
             switch (r.id) {
                 case "clan":
-                    clan += 0
+                    clan -= 25
                     break;
                 case "adhocracy":
-                    adhocracy += 0
+                    adhocracy -= 25
                     break;
                 case "market":
-                    market += 0;
+                    market -= 25;
                     break;
                 case "hierarchy":
-                    hierarchy += 0
+                    hierarchy -= 25
                     break;
                 default:
                     break;
@@ -321,11 +346,39 @@ class Question extends Component {
                 <h1>{this.props.question_data.question}</h1>
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className="row justify-content-center">
+                        <Droppable droppableId="rank0">
+                            {(provided, snapshot) => (
+                                <div
+                                    ref={provided.innerRef}
+                                    className="mr-5 w-15 rank0 p-2">
+                                    {this.state.rank0.map((item, index) => (
+                                        <Draggable
+                                            key={item.id}
+                                            draggableId={item.id}
+                                            index={index}>
+                                            {(provided, snapshot) => (
+                                                <div
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    style={getItemStyle(
+                                                        snapshot.isDragging,
+                                                        provided.draggableProps.style
+                                                    )}>
+                                                    {item.content}
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
                         <Droppable droppableId="rank1">
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5 w-15 rank1 p-2">
+                                    className="mr-3 w-15 rank1 p-2">
                                     {this.state.rank1.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -353,7 +406,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5 w-15 rank2 p-2">
+                                    className="mr-3 w-15 rank2 p-2">
                                     {this.state.rank2.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -381,7 +434,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5 w-15 rank3 p-2">
+                                    className="mr-3 w-15 rank3 p-2">
                                     {this.state.rank3.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -409,7 +462,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5 w-15 rank4 p-2">
+                                    className="mr-3 w-15 rank4 p-2">
                                     {this.state.rank4.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -437,7 +490,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5 w-15 bin p-2"
+                                    className="mr-3 w-15 bin p-2"
                                 >
                                     {this.state.bin.map((item, index) => (
                                         <Draggable
