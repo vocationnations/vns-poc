@@ -1,3 +1,8 @@
+.rank0 {
+    border: 1px solid #FAFAFA;
+    background-color: #FAFAFA !important;
+}
+
 .rank1 {
     border: 1px solid #85924B;
     background-color: #00E643 !important;
