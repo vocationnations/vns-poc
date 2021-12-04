@@ -6,6 +6,8 @@ import HeroSection from "./sections/hero/hero-section";
 import UserTypeSelectionSection
     from "./sections/user-type-selection/user-type-selection.section";
 import SalesPitchSection from "./sections/sales-pitch/sales-pitch.section";
+import CallToActionSection
+    from "./sections/call-to-action/call-to-action.section";
 
 const HomeGuestComponent = () => {
 
@@ -16,6 +18,7 @@ const HomeGuestComponent = () => {
             <HeroSection/>
             <UserTypeSelectionSection userType={userType} update={setUserType}/>
             {userType !== null && <SalesPitchSection userType={userType}/>}
+            <CallToActionSection/>
         </div>
     )
 }
