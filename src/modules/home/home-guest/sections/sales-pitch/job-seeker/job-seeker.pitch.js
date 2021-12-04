@@ -1,40 +1,43 @@
 import React from 'react';
 
 import './job-seeker.pitch.css'
+import {Link} from "react-router-dom";
 
 const data = [
     {
-        title    : "Build an effective and diverse team",
-        text     : "Vocation Nations helps you identify team members who will" +
-            " thrive in your culture.",
-        image_url: "/images/employer-pitch/img1.png"
+        title      : "Join an effective and diverse team",
+        text       : "Vocation Nations helps you identify employment" +
+            " opportunities that match your culture type.",
+        image_url  : "/images/employer-pitch/img1.png",
+        button_text: "Start your cultural alignment today!"
     },
     {
-        title    : "By drawing from a continuous pool of candidates",
-        text     : "Say goodbye to enormous stacks of resumes - those towers of" +
-            " tedium - and embrace a free-flowing community of job-seekers who fit your team",
-        image_url: "/images/employer-pitch/img2.png"
+        title      : "By drawing from a continuous pool of employers",
+        text       : "Say goodbye to enormous stacks of applications - those" +
+            " towers of" +
+            " tedium - and embrace a free-flowing list of employers who fit" +
+            " your style",
+        image_url  : "/images/employer-pitch/img2.png",
+        button_text: "Access your matches today!"
     },
     {
-        title    : "And 40 years of research in organizational behaviour",
-        text     : "So we know what we are talking about!",
-        image_url: "/images/employer-pitch/img3.png"
+        title      : "And 40 years of research in organizational behaviour",
+        text       : "So we know what we are talking about!",
+        image_url  : "/images/employer-pitch/img3.png",
+        button_text: "Access our experience today!"
     },
     {
-        title    : "A level playing field",
-        text     : "Say goodbye to enormous stacks of resumes - those towers of" +
-            " tedium - and embrace a free-flowing community of job-seekers who fit your team",
-        image_url: "/images/employer-pitch/img4.png"
+        title      : "A level playing field for our job-seekers.",
+        text       : "Our anonymous matching system puts a dent in bias" +
+            " hiring.",
+        image_url  : "/images/employer-pitch/img4.png",
+        button_text: "Explore our award-winning design now!"
     },
     {
-        title    : "Pay for performance",
-        text     : "Simple? Yes! Absolutely." +
-            "1) Identify your needs, 2) select your matches," +
-            " 3) interview-ready" +
-            " candidates." +
-            " Pay for the candidates who fit your team." +
-            " Zero risk",
-        image_url: "/images/employer-pitch/img5.png"
+        title      : "Free for thee!",
+        text       : "Simple? Yes. Free? Absolutely!,",
+        image_url  : "/images/employer-pitch/img5.png",
+        button_text: "Start saving money now!"
     }
 ]
 
@@ -42,8 +45,8 @@ const JobSeekerPitch = () => {
     return (
         <>
             {
-                data.map((r,i) => {
-                    if(i%2 === 0) {
+                data.map((r, i) => {
+                    if (i % 2 === 0) {
                         console.log("Even: " + r.title)
                         return (
                             <section style={{backgroundColor: "#e8dfdc"}}>
@@ -54,6 +57,12 @@ const JobSeekerPitch = () => {
                                             <h6 className="text-uppercase">{r.title}</h6>
                                             <div className="vspacer-20"/>
                                             <p className="lead">{r.text}</p>
+                                            <Link to="/signup">
+                                                <button
+                                                    className="btn btn-info"
+                                                >{r.button_text}
+                                                </button>
+                                            </Link>
                                         </div>
                                         <div className="col-lg-7 p-0 text-left">
                                             <img alt={r.text}
@@ -79,6 +88,12 @@ const JobSeekerPitch = () => {
                                             <h6 className="text-uppercase">{r.title}</h6>
                                             <div className="vspacer-20"/>
                                             <p className="lead">{r.text}</p>
+                                            <Link to="/signup">
+                                                <button
+                                                    className="btn btn-info"
+                                                >{r.button_text}
+                                                </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +104,7 @@ const JobSeekerPitch = () => {
             }
         </>
 
-);
+    );
 }
 
 export default JobSeekerPitch;
