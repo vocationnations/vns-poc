@@ -4,26 +4,26 @@ import './employer.pitch.css'
 
 const data = [
     {
-        title    : "Build an effective and diverse team",
-        text     : "Vocation Nations helps you identify team members who will" +
-            " thrive in your culture.",
+        title    : "Employ an effective and diverse team",
+        text     : "Vocation Nations helps you identify interview-ready candidates who will" +
+            " contribute meaningful insights to your culture.",
         image_url: "/images/employer-pitch/img1.png"
     },
     {
-        title    : "By drawing from a continuous pool of candidates",
+        title    : "Our platform will constantly draw from a pool of candidates",
         text     : "Say goodbye to enormous stacks of resumes - those towers of" +
             " tedium - and embrace a free-flowing community of job-seekers who fit your team",
         image_url: "/images/employer-pitch/img2.png"
     },
     {
-        title    : "And 40 years of research in organizational behaviour",
+        title    : "And a combined 40 years of research in organizational behaviour",
         text     : "So we know what we are talking about!",
         image_url: "/images/employer-pitch/img3.png"
     },
     {
         title    : "A level playing field",
-        text     : "Say goodbye to enormous stacks of resumes - those towers of" +
-            " tedium - and embrace a free-flowing community of job-seekers who fit your team",
+        text     : "Our pricing strategy is an employer friendly consists of a " +
+            " pay by performance model",
         image_url: "/images/employer-pitch/img4.png"
     },
     {
