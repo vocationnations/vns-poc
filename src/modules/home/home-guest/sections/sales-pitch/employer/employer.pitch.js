@@ -1,40 +1,46 @@
 import React from 'react';
 
 import './employer.pitch.css'
+import {Link} from "react-router-dom";
 
 const data = [
     {
-        title    : "Employ an effective and diverse team",
-        text     : "Vocation Nations helps you identify interview-ready candidates who will" +
-            " contribute meaningful insights to your culture.",
-        image_url: "/images/employer-pitch/img1.png"
+        title      : "Build an effective and diverse team",
+        text       : "Vocation Nations helps you identify team members who will" +
+            " thrive in your culture.",
+        image_url  : "/images/employer-pitch/img1.png",
+        button_text: "Build your diverse team today!"
     },
     {
-        title    : "Our platform will constantly draw from a pool of candidates",
-        text     : "Say goodbye to enormous stacks of resumes - those towers of" +
+        title      : "By drawing from a continuous pool of candidates",
+        text       : "Say goodbye to enormous stacks of resumes - those towers of" +
             " tedium - and embrace a free-flowing community of job-seekers who fit your team",
-        image_url: "/images/employer-pitch/img2.png"
+        image_url  : "/images/employer-pitch/img2.png",
+        button_text: "Access your matches today!"
     },
     {
-        title    : "And a combined 40 years of research in organizational behaviour",
-        text     : "So we know what we are talking about!",
-        image_url: "/images/employer-pitch/img3.png"
+        title      : "And 40 years of research in organizational behaviour",
+        text       : "So we know what we are talking about!",
+        image_url  : "/images/employer-pitch/img3.png",
+        button_text: "Access our Experience today!"
     },
     {
-        title    : "A level playing field",
-        text     : "Our pricing strategy is an employer friendly consists of a " +
-            " pay by performance model",
-        image_url: "/images/employer-pitch/img4.png"
+        title      : "A level playing field",
+        text       : "Say goodbye to enormous stacks of resumes - those towers of" +
+            " tedium - and embrace a free-flowing community of job-seekers who fit your team",
+        image_url  : "/images/employer-pitch/img4.png",
+        button_text: "Explore our platform now!"
     },
     {
-        title    : "Pay for performance",
-        text     : "Simple? Yes! Absolutely." +
+        title      : "Pay for performance",
+        text       : "Simple? Yes! Absolutely." +
             "1) Identify your needs, 2) select your matches," +
             " 3) interview-ready" +
             " candidates." +
             " Pay for the candidates who fit your team." +
             " Zero risk",
-        image_url: "/images/employer-pitch/img5.png"
+        image_url  : "/images/employer-pitch/img5.png",
+        button_text: "Start saving money now!"
     }
 ]
 
@@ -53,6 +59,12 @@ const EmployerPitch = () => {
                                             <h6 className="text-uppercase">{r.title}</h6>
                                             <div className="vspacer-20"/>
                                             <p className="lead">{r.text}</p>
+                                            <Link to="/signup">
+                                                <button
+                                                    className="btn btn-info"
+                                                >{r.button_text}
+                                                </button>
+                                            </Link>
                                         </div>
                                         <div className="col-lg-7 p-0 text-left">
                                             <img alt={r.text}
@@ -77,6 +89,12 @@ const EmployerPitch = () => {
                                             <h6 className="text-uppercase">{r.title}</h6>
                                             <div className="vspacer-20"/>
                                             <p className="lead">{r.text}</p>
+                                            <Link to="/signup">
+                                                <button
+                                                    className="btn btn-info"
+                                                >{r.button_text}
+                                                </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
