@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "vnspocaf97745d": {}
+        "vnspocaf97745d": {},
+        "userPoolGroups": {}
       }
     }
   }

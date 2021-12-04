@@ -1,4 +1,5 @@
 {
-  "projectPath": "/Users/tayabsoomro/Documents/VocationNations-Main/code/vns-poc",
-  "envName": "dev"
+  "projectPath"  : "/Users/tayabsoomro/Documents/VocationNations-Main/code/vns-poc",
+  "envName"      : "dev",
+  "defaultEditor": "none"
 }

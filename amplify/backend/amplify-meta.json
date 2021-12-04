@@ -14,35 +14,35 @@
   },
   "auth": {
     "vnspocaf97745d": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false,
-      "providerMetadata": {
+      "service"          : "Cognito",
+      "providerPlugin"   : "awscloudformation",
+      "dependsOn"        : [],
+      "customAuth"       : false,
+      "providerMetadata" : {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-vnspoc-dev-13832-deployment/amplify-cfn-templates/auth/vnspocaf97745d-cloudformation-template.yml",
-        "logicalId": "authvnspocaf97745d"
+        "logicalId"    : "authvnspocaf97745d"
       },
-      "lastPushTimeStamp": "2021-06-17T03:05:10.391Z",
-      "output": {
-        "UserPoolId": "us-west-2_IOlrhoBn4",
-        "AppClientIDWeb": "1rfpm3m42lgsn705nmg198rid",
-        "AppClientID": "24gql6u73ujvpjl37rkad6jhgq",
-        "IdentityPoolId": "us-west-2:ce272286-acc5-4f5e-8204-99db523ff4e2",
+      "lastPushTimeStamp": "2021-12-04T20:51:47.120Z",
+      "output"           : {
+        "UserPoolId"      : "us-west-2_IOlrhoBn4",
+        "AppClientIDWeb"  : "1rfpm3m42lgsn705nmg198rid",
+        "AppClientID"     : "24gql6u73ujvpjl37rkad6jhgq",
+        "IdentityPoolId"  : "us-west-2:ce272286-acc5-4f5e-8204-99db523ff4e2",
         "IdentityPoolName": "vnspocaf97745d_identitypool_af97745d__dev",
-        "UserPoolName": "vnspocaf97745d_userpool_af97745d",
-        "HostedUIDomain": "vnspocc71e6973-c71e6973-dev",
-        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}"
+        "UserPoolName"    : "vnspocaf97745d_userpool_af97745d",
+        "HostedUIDomain"  : "vnspocc71e6973-c71e6973-dev",
+        "OAuthMetadata"   : "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}"
       },
-      "lastPushDirHash": "52nTt5iMzTtDo9chXBkssz2MKnA="
+      "lastPushDirHash"  : "52nTt5iMzTtDo9chXBkssz2MKnA="
     },
     "userPoolGroups": {
       "service": "Cognito-UserPool-Groups",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
-          "category": "auth",
+          "category"    : "auth",
           "resourceName": "vnspocaf97745d",
-          "attributes": [
+          "attributes"  : [
             "UserPoolId",
             "AppClientIDWeb",
             "AppClientID",
@@ -50,10 +50,10 @@
           ]
         }
       ],
-      "lastPushTimeStamp": "2021-06-17T03:05:10.391Z",
+      "lastPushTimeStamp": "2021-12-04T20:51:47.122Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-vnspoc-dev-13832-deployment/amplify-cfn-templates/auth/template.json",
-        "logicalId": "authuserPoolGroups"
+        "logicalId"    : "authuserPoolGroups"
       },
       "output": {
         "vnsmainGroupRole": "arn:aws:iam::427779414123:role/us-west-2_IOlrhoBn4-vnsmainGroupRole"

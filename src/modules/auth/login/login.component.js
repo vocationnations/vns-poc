@@ -39,7 +39,7 @@ const LoginComponent = () => {
             <div className="col-lg-6 p-0">
                 {errMessage && <div className="alert alert-danger"><i
                     className="fas fa-times"/> {errMessage}</div>}
-                <h3 className="font-weight-bolder text-uppercase">sign in</h3>
+                <h3 className="font-weight-bolder text-uppercase">login</h3>
                 <div className="form-group">
                     <label>Email address</label>
                     <input value={email}

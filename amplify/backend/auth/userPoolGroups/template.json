@@ -1,33 +1,33 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Parameters": {
-    "authvnspocaf97745dUserPoolId": {
-      "Type": "String",
+  "Parameters"              : {
+    "authvnspocaf97745dUserPoolId"    : {
+      "Type"   : "String",
       "Default": "authvnspocaf97745dUserPoolId"
     },
     "authvnspocaf97745dIdentityPoolId": {
-      "Type": "String",
+      "Type"   : "String",
       "Default": "authvnspocaf97745dIdentityPoolId"
     },
-    "authvnspocaf97745dAppClientID": {
-      "Type": "String",
+    "authvnspocaf97745dAppClientID"   : {
+      "Type"   : "String",
       "Default": "authvnspocaf97745dAppClientID"
     },
     "authvnspocaf97745dAppClientIDWeb": {
-      "Type": "String",
+      "Type"   : "String",
       "Default": "authvnspocaf97745dAppClientIDWeb"
     },
-    "AuthRoleArn": {
+    "AuthRoleArn"                     : {
       "Type": "String"
     },
-    "UnauthRoleArn": {
+    "UnauthRoleArn"                   : {
       "Type": "String"
     },
-    "env": {
+    "env"                             : {
       "Type": "String"
     }
   },
-  "Conditions": {
+  "Conditions"              : {
     "ShouldNotCreateEnvResources": {
       "Fn::Equals": [
         {
@@ -37,13 +37,13 @@
       ]
     }
   },
-  "Resources": {
-    "vnsmainGroup": {
-      "Type": "AWS::Cognito::UserPoolGroup",
+  "Resources"               : {
+    "vnsmainGroup"        : {
+      "Type"      : "AWS::Cognito::UserPoolGroup",
       "Properties": {
-        "GroupName": "vnsmain",
+        "GroupName" : "vnsmain",
         "Precedence": 1,
-        "RoleArn": {
+        "RoleArn"   : {
           "Fn::GetAtt": [
             "vnsmainGroupRole",
             "Arn"
@@ -54,10 +54,10 @@
         }
       }
     },
-    "vnsmainGroupRole": {
-      "Type": "AWS::IAM::Role",
+    "vnsmainGroupRole"    : {
+      "Type"      : "AWS::IAM::Role",
       "Properties": {
-        "RoleName": {
+        "RoleName"                : {
           "Fn::Join": [
             "",
             [
@@ -69,17 +69,17 @@
           ]
         },
         "AssumeRolePolicyDocument": {
-          "Version": "2012-10-17",
+          "Version"  : "2012-10-17",
           "Statement": [
             {
-              "Sid": "",
-              "Effect": "Allow",
+              "Sid"      : "",
+              "Effect"   : "Allow",
               "Principal": {
                 "Federated": "cognito-identity.amazonaws.com"
               },
-              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Action"   : "sts:AssumeRoleWithWebIdentity",
               "Condition": {
-                "StringEquals": {
+                "StringEquals"          : {
                   "cognito-identity.amazonaws.com:aud": {
                     "Ref": "authvnspocaf97745dIdentityPoolId"
                   }
@@ -93,10 +93,10 @@
         }
       }
     },
-    "LambdaExecutionRole": {
-      "Type": "AWS::IAM::Role",
+    "LambdaExecutionRole" : {
+      "Type"      : "AWS::IAM::Role",
       "Properties": {
-        "RoleName": {
+        "RoleName"                : {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
             {
@@ -116,30 +116,30 @@
           ]
         },
         "AssumeRolePolicyDocument": {
-          "Version": "2012-10-17",
+          "Version"  : "2012-10-17",
           "Statement": [
             {
-              "Effect": "Allow",
+              "Effect"   : "Allow",
               "Principal": {
                 "Service": [
                   "lambda.amazonaws.com"
                 ]
               },
-              "Action": [
+              "Action"   : [
                 "sts:AssumeRole"
               ]
             }
           ]
         },
-        "Policies": [
+        "Policies"                : [
           {
-            "PolicyName": "UserGroupLogPolicy",
+            "PolicyName"    : "UserGroupLogPolicy",
             "PolicyDocument": {
-              "Version": "2012-10-17",
+              "Version"  : "2012-10-17",
               "Statement": [
                 {
-                  "Effect": "Allow",
-                  "Action": [
+                  "Effect"  : "Allow",
+                  "Action"  : [
                     "logs:CreateLogGroup",
                     "logs:CreateLogStream",
                     "logs:PutLogEvents"
@@ -150,13 +150,13 @@
             }
           },
           {
-            "PolicyName": "UserGroupExecutionPolicy",
+            "PolicyName"    : "UserGroupExecutionPolicy",
             "PolicyDocument": {
-              "Version": "2012-10-17",
+              "Version"  : "2012-10-17",
               "Statement": [
                 {
-                  "Effect": "Allow",
-                  "Action": [
+                  "Effect"  : "Allow",
+                  "Action"  : [
                     "cognito-identity:SetIdentityPoolRoles",
                     "cognito-identity:ListIdentityPools",
                     "cognito-identity:describeIdentityPool"
@@ -167,13 +167,13 @@
             }
           },
           {
-            "PolicyName": "UserGroupPassRolePolicy",
+            "PolicyName"    : "UserGroupPassRolePolicy",
             "PolicyDocument": {
-              "Version": "2012-10-17",
+              "Version"  : "2012-10-17",
               "Statement": [
                 {
-                  "Effect": "Allow",
-                  "Action": [
+                  "Effect"  : "Allow",
+                  "Action"  : [
                     "iam:PassRole"
                   ],
                   "Resource": "*"
@@ -184,11 +184,9 @@
         ]
       }
     },
-    "RoleMapFunction": {
-      "Type": "AWS::Lambda::Function",
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
+    "RoleMapFunction"     : {
+      "Type"      : "AWS::Lambda::Function",
+      "DependsOn" : ["LambdaExecutionRole"],
       "Properties": {
         "Code": {
           "ZipFile": {
@@ -248,45 +246,43 @@
       }
     },
     "RoleMapFunctionInput": {
-      "Type": "Custom::LambdaCallout",
+      "Type"      : "Custom::LambdaCallout",
       "Properties": {
-        "ServiceToken": {
+        "ServiceToken"  : {
           "Fn::GetAtt": [
             "RoleMapFunction",
             "Arn"
           ]
         },
-        "AuthRoleArn": {
+        "AuthRoleArn"   : {
           "Ref": "AuthRoleArn"
         },
-        "UnauthRoleArn": {
+        "UnauthRoleArn" : {
           "Ref": "UnauthRoleArn"
         },
         "identityPoolId": {
           "Ref": "authvnspocaf97745dIdentityPoolId"
         },
-        "userPoolId": {
+        "userPoolId"    : {
           "Ref": "authvnspocaf97745dUserPoolId"
         },
         "appClientIDWeb": {
           "Ref": "authvnspocaf97745dAppClientIDWeb"
         },
-        "appClientID": {
+        "appClientID"   : {
           "Ref": "authvnspocaf97745dAppClientID"
         },
-        "region": {
+        "region"        : {
           "Ref": "AWS::Region"
         },
-        "env": {
+        "env"           : {
           "Ref": "env"
         }
       },
-      "DependsOn": [
-        "RoleMapFunction"
-      ]
+      "DependsOn" : ["RoleMapFunction"]
     }
   },
-  "Outputs": {
+  "Outputs"                 : {
     "vnsmainGroupRole": {
       "Value": {
         "Fn::GetAtt": [

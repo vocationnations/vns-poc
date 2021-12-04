@@ -1,13 +1,12 @@
 import React from 'react';
-import UserDashboardComponent
-    from "../../user/dashboard/user-dashboard.component";
+import SwitchBoard from "../../swtichboard/switchboard.component";
 
 const AuthRoutes = [
     {
-        name: "Dashboard",
-        path: "/",
-        exact: true,
-        component: <UserDashboardComponent/>
+        name     : "SwitchBoard",
+        path     : "/",
+        exact    : true,
+        component: <SwitchBoard/>
     }
 ]
 

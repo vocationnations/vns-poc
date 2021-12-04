@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import AuthService from "../auth.service";
 import {useHistory} from 'react-router-dom';
-import {useUser} from "../context/user-provider";
 import {Button, ButtonGroup} from 'react-bootstrap';
 
 import './signup.component.css'
@@ -17,8 +16,6 @@ const SignupComponent = () => {
     const history = useHistory();
 
 
-    const {setUser} = useUser();
-
     const [email, setEmail]       = useState('')
     const [pass, setPass]         = useState('')
     const [userType, setUserType] = useState(0);
@@ -27,13 +24,15 @@ const SignupComponent = () => {
 
     const handleSignUp = () => {
         auth_service.userSignup(
-            email, pass, (user) => {
-                setUser(user)
-                history.push('/')
+            email, pass, () => {
+                // setUser(user)
+                let login_link = '/login/'
+                history.push(login_link)
             },
             (err) => setErrMessage(err.message),
             {
-                "custom:vn:usertype": UserTypes[userType]
+                "custom:vn:usertype" : UserTypes[userType],
+                "custom:vn:firsttime": "true"
             }
         )
     }
