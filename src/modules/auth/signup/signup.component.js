@@ -2,11 +2,14 @@ import React, {useState} from 'react';
 import AuthService from "../auth.service";
 import {useHistory} from 'react-router-dom';
 import {useUser} from "../context/user-provider";
+import {Button, ButtonGroup} from 'react-bootstrap';
 
 import './signup.component.css'
 import {Auth} from "aws-amplify";
 
 const auth_service = new AuthService();
+
+const UserTypes = ["employer", "jobseeker"]
 
 
 const SignupComponent = () => {
@@ -16,22 +19,29 @@ const SignupComponent = () => {
 
     const {setUser} = useUser();
 
-    const [email, setEmail] = useState('')
-    const [pass, setPass]   = useState('')
+    const [email, setEmail]       = useState('')
+    const [pass, setPass]         = useState('')
+    const [userType, setUserType] = useState(0);
 
     const [errMessage, setErrMessage] = useState('')
 
     const handleSignUp = () => {
         auth_service.userSignup(
             email, pass, (user) => {
-                console.log("USER IS")
-                console.log(user)
                 setUser(user)
                 history.push('/')
             },
-            (err) => setErrMessage(err.message))
+            (err) => setErrMessage(err.message),
+            {
+                "custom:vn:usertype": UserTypes[userType]
+            }
+        )
     }
 
+    const toggleUserType = () => setUserType(+!userType)
+
+    let emp_variant = userType === 0 ? "outline-info active" : "outline-info"
+    let js_variant  = userType === 1 ? "outline-info active" : "outline-info"
 
     return (
         <div className="container-fluid pt-5 row justify-content-center">
@@ -39,6 +49,15 @@ const SignupComponent = () => {
                 {errMessage && <div className="alert alert-danger"><i
                     className="fas fa-times"/> {errMessage}</div>}
                 <h3 className="font-weight-bolder text-uppercase">sign up</h3>
+                <div className="row justify-content-center">
+                    <ButtonGroup aria-label="Basic example">
+                        <Button className="radioButton" variant={emp_variant}
+                                onClick={() => toggleUserType()}>Employer</Button>
+                        <Button className="radioButton" variant={js_variant}
+                                onClick={() => toggleUserType()}>Job
+                                                                 Seeker</Button>
+                    </ButtonGroup>
+                </div>
                 <div className="form-group">
                     <label>Email address</label>
                     <input value={email}
