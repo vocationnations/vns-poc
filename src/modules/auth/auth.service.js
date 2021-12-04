@@ -12,7 +12,7 @@ class AuthService extends Service {
     }
 
     /**
-     * userLogin function accesses firebase Authentication API to attempt
+     * userLogin function accesses AWS Cognito Authentication API to attempt
      * to log in the user.
      * @param email the user's email
      * @param password the user's password
@@ -28,6 +28,33 @@ class AuthService extends Service {
             })
             .catch((e) => {
                 console.log("ERROR")
+                console.log(e)
+                error(e)
+            })
+    }
+
+    /**
+     * userSignup function accesses AWS Cognito Authentication API to
+     * attempt to signup the user
+     * @param email
+     * @param password
+     * @param success
+     * @param error
+     * @param attributes
+     */
+    userSignup(email, password, success, error, attributes = null) {
+        Auth.signUp({
+            username  : email,
+            password  : password,
+            attributes: {...attributes, email: email}
+        })
+            .then((user) => {
+                console.log("User Signup Successful")
+                console.log(user)
+                success(user)
+            })
+            .catch((e) => {
+                console.log("ERROR Signup")
                 console.log(e)
                 error(e)
             })

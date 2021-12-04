@@ -19,7 +19,6 @@ const UserProvider = ({children}) => {
 
         Hub.listen('auth', (data) => {
             const {payload} = data;
-            console.log('new event!', data)
             if (payload.event === 'signIn') {
                 setUser(payload.data);
             }

@@ -17,14 +17,13 @@ const SignupComponent = () => {
     const {setUser} = useUser();
 
     const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
+    const [pass, setPass]   = useState('')
 
     const [errMessage, setErrMessage] = useState('')
 
-    const handleSignIn = () => {
-        auth_service.userLogin(
-            email, pass,
-            (user) => {
+    const handleSignUp = () => {
+        auth_service.userSignup(
+            email, pass, (user) => {
                 console.log("USER IS")
                 console.log(user)
                 setUser(user)
@@ -55,7 +54,7 @@ const SignupComponent = () => {
                            className="form-control"/>
                 </div>
                 <button type="submit" className="btn btn-info"
-                        onClick={() => handleSignIn()}>Sign In
+                        onClick={() => handleSignUp()}>Sign In
                 </button>
                 <lww>or</lww>
                 <div
