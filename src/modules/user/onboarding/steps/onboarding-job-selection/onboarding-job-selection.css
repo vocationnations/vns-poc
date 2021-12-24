@@ -1,0 +1,7 @@
+.radio input {
+    margin : 0.5em;
+}
+
+.field .input {
+    max-width : 500px;
+}
