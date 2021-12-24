@@ -1,15 +1,10 @@
 import React, {useState} from 'react';
-
-import AuthService from "../../auth/auth.service";
-import {useHistory} from "react-router-dom";
 import {
     OnBoardingClimateEntryComponent,
     OnBoardingCultureEntryComponent,
     OnBoardingJobSelectionComponent,
     OnBoardingSkillsSelectionComponent
 } from "./steps/index"
-
-const auth_service = new AuthService();
 
 const OnBoardingMessage = ({setStepNumber}) => {
     return (
@@ -35,8 +30,6 @@ const OnBoardingMessage = ({setStepNumber}) => {
 
 
 const OnBoardingComponent = () => {
-
-    const history = useHistory()
 
     const [stepNumber, setStepNumber] = useState(0);
 
