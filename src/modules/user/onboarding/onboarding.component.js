@@ -74,12 +74,6 @@ const OnBoardingComponent = () => {
     ]
 
 
-    const logout = () => {
-        auth_service.userLogout();
-        history.push('/')
-
-    }
-
     return (
         <div>
             <div className="container-fluid">
