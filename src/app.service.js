@@ -2,7 +2,7 @@ import axios from "axios";
 import {firebaseApp} from "./config/firebase-config";
 
 const axios_instance = axios.create({
-    baseURL: "",
+    baseURL: "http://localhost:5000",
     headers: {
         'Content-Type': 'application/json'
     }
@@ -67,6 +67,15 @@ class Service {
                     } else {
                         error(res.data)
                     }
+                })
+                .catch(err => error(err))
+        } else if (method === this.RequestMethod.GET) {
+            axios_instance
+                .get(endpoint)
+                .then(res => {
+                    if (res.status === 200) {
+                        success(res.data)
+                    } else error(res)
                 })
                 .catch(err => error(err))
         } else {
