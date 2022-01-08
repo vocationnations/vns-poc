@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OnBoardingSkillsSelectionComponent = () => {
+const JobseekerOnboardingSkillsSelectionComponent = () => {
     return (
         <div>
             <h1>Skills Selection</h1>
@@ -13,4 +13,4 @@ const OnBoardingSkillsSelectionComponent = () => {
     );
 };
 
-export default OnBoardingSkillsSelectionComponent;
+export default JobseekerOnboardingSkillsSelectionComponent;

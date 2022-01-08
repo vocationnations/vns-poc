@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {
-    OnBoardingClimateEntryComponent,
-    OnBoardingCultureEntryComponent,
-    OnBoardingJobSelectionComponent,
-    OnBoardingSkillsSelectionComponent
-} from "./steps/index"
+    JobseekerOnboardingClimateEntryComponent,
+    JobseekerOnboardingCultureEntryComponent,
+    JobseekerOnboardingJobSelectionComponent,
+    JobseekerOnboardingSkillsSelectionComponent
+} from "./onboarding-steps"
 
 const OnBoardingMessage = ({setStepNumber}) => {
     return (
@@ -29,7 +29,7 @@ const OnBoardingMessage = ({setStepNumber}) => {
 }
 
 
-const OnBoardingComponent = () => {
+const JobseekerOnboardingComponent = () => {
 
     const [stepNumber, setStepNumber] = useState(0);
 
@@ -46,22 +46,22 @@ const OnBoardingComponent = () => {
     const steps = [
         {
             name     : 'Job Selection',
-            component: <OnBoardingJobSelectionComponent
+            component: <JobseekerOnboardingJobSelectionComponent
                 advanceStep={advanceStep}/>
         },
         {
             name     : 'Skills Selection',
-            component: <OnBoardingSkillsSelectionComponent
+            component: <JobseekerOnboardingSkillsSelectionComponent
                 advanceStep={advanceStep}/>
         },
         {
             name     : 'Culture Entry',
-            component: <OnBoardingCultureEntryComponent
+            component: <JobseekerOnboardingCultureEntryComponent
                 advanceStep={advanceStep}/>
         },
         {
             name     : 'Climate Entry',
-            component: <OnBoardingClimateEntryComponent
+            component: <JobseekerOnboardingClimateEntryComponent
                 advanceStep={advanceStep}/>
         }
     ]
@@ -99,4 +99,4 @@ const OnBoardingComponent = () => {
         </div>
     );
 }
-export default OnBoardingComponent;
+export default JobseekerOnboardingComponent;

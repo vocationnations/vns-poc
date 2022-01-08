@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 
-import './onboarding-job-selection.css';
-import AutoComplete from "../../../../../components/autocomplete/autocomplete";
-import OnBoardingService from "../../onboarding.service";
+import './jobseeker-onboarding-job-selection.css';
+import AutoComplete from "../../../../../../components/autocomplete/autocomplete";
+import OnBoardingService from "../../../onboarding.service";
 
 const service = new OnBoardingService();
 
-const OnBoardingJobSelectionComponent = () => {
+const JobseekerOnboardingJobSelectionComponent = () => {
 
     const [keyword, setKeyword]                 = useState('')
     const [listSuggestions, setListSuggestions] = useState([]);
@@ -39,4 +39,4 @@ const OnBoardingJobSelectionComponent = () => {
     </div>);
 };
 
-export default OnBoardingJobSelectionComponent;
+export default JobseekerOnboardingJobSelectionComponent;

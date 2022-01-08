@@ -1,10 +1,10 @@
 import React from 'react';
 
-const OnBoardingClimateEntryComponent = () => {
+const JobseekerOnboardingClimateEntryComponent = () => {
     return (
         <div>
             <h1>OnBoardingClimateEntryComponent</h1>
         </div>
     );
 }
-export default OnBoardingClimateEntryComponent;
+export default JobseekerOnboardingClimateEntryComponent;
