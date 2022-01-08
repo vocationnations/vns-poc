@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import AuthService from "../../auth/auth.service";
-import {useUser} from "../../auth/context/user-provider";
+import AuthService from "../../../auth/auth.service";
+import {useUser} from "../../../auth/context/user-provider";
 
-import './user-dashboard.component.css'
-import SurveyorComponent from "../../../surveyor.component";
+import './jobseeker-dashboard.component.css'
+import SurveyorComponent from "../../../../surveyor.component";
 import CultureRadialComponent
-    from "../../culture-radial/culture-radial.component";
+    from "../../../culture-radial/culture-radial.component";
 
 const auth_service = new AuthService();
 
-const UserDashboardComponent = () => {
+const JobseekerDashboardComponent = () => {
 
     const [radialData, setRadialData] = useState([100, 100, 100, 100])
 
@@ -73,4 +73,4 @@ const UserDashboardComponent = () => {
     )
 }
 
-export default UserDashboardComponent;
+export default JobseekerDashboardComponent;
