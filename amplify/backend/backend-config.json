@@ -1,26 +1,10 @@
 {
   "auth": {
-    "vnspocaf97745d": {
-      "service": "Cognito",
+    "vnspoc48ab07f8": {
+      "service"       : "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
-    },
-    "userPoolGroups": {
-      "service": "Cognito-UserPool-Groups",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "vnspocaf97745d",
-          "attributes": [
-            "UserPoolId",
-            "AppClientIDWeb",
-            "AppClientID",
-            "IdentityPoolId"
-          ]
-        }
-      ]
+      "dependsOn"     : [],
+      "customAuth"    : false
     }
   }
 }

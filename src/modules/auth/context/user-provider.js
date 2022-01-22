@@ -8,7 +8,8 @@ function useUser() {
 }
 
 const UserProvider = ({children}) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser]     = useState(null);
+    const [userId, setUserID] = useState(-1);
 
     useEffect(() => {
         Auth.currentAuthenticatedUser()
@@ -29,7 +30,12 @@ const UserProvider = ({children}) => {
     }, [])
 
     return (
-        <UserContext.Provider value={{user: user, setUser: setUser}}>
+        <UserContext.Provider value={{
+            user     : user,
+            setUser  : setUser,
+            userId   : userId,
+            setUserID: setUserID
+        }}>
             {children}
         </UserContext.Provider>
     );

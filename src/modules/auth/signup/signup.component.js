@@ -15,19 +15,22 @@ const SignupComponent = () => {
 
     const history = useHistory();
 
-
-    const [email, setEmail]       = useState('')
-    const [pass, setPass]         = useState('')
-    const [userType, setUserType] = useState(0);
-
+    const [email, setEmail]           = useState('')
+    const [pass, setPass]             = useState('')
+    const [userType, setUserType]     = useState(0);
+    const [success, setSuccess]       = useState('');
     const [errMessage, setErrMessage] = useState('')
 
     const handleSignUp = () => {
         auth_service.userSignup(
             email, pass, () => {
                 // setUser(user)
-                let login_link = '/login/'
-                history.push(login_link)
+                let login_link  = '/login/'
+                let confirm_url = window.location.protocol + '//' + window.location.host + '/#/confirm/' + email
+                setSuccess("Successfully signed up! Please check your email." +
+                    " Once you get the code, go to this URL <a" +
+                    " href='" + confirm_url + "'}>" + confirm_url + "</a>" +
+                    " to activate your account!")
             },
             (err) => setErrMessage(err.message),
             {
@@ -45,8 +48,12 @@ const SignupComponent = () => {
     return (
         <div className="container-fluid pt-5 row justify-content-center">
             <div className="col-lg-6 p-0">
+                {success !== "" &&
+                    <div className="alert alert-success"
+                         dangerouslySetInnerHTML={{__html: success}}/>}
                 {errMessage && <div className="alert alert-danger"><i
                     className="fas fa-times"/> {errMessage}</div>}
+                <div className="vspacer-20"/>
                 <h3 className="font-weight-bolder text-uppercase">sign up</h3>
                 <div className="row justify-content-center">
                     <ButtonGroup aria-label="Basic example">
@@ -72,7 +79,7 @@ const SignupComponent = () => {
                            className="form-control"/>
                 </div>
                 <button type="submit" className="btn btn-info"
-                        onClick={() => handleSignUp()}>Sign In
+                        onClick={() => handleSignUp()}>Sign Up
                 </button>
                 <lww>or</lww>
                 <div

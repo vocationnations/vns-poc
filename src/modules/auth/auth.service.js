@@ -34,6 +34,28 @@ class AuthService extends Service {
     }
 
     /**
+     * getUserIdFromEmail function returns the id of the user from vns
+     * database for a given user
+     * @param email the email to get the user id from
+     * @param success the callback to execute if successful
+     * @param error the callback to execute if unsuccessful
+     */
+    getUserIdFromEmail(email, success, error) {
+        this.submit(
+            'get_users',
+            this.RequestMethod.GET,
+            {},
+            (res) => {
+                let usr = res.filter(a => a.email === email)[0]
+                return success({
+                    id: usr.id
+                })
+            },
+            (err) => error(err)
+        )
+    }
+
+    /**
      * userSignup function accesses AWS Cognito Authentication API to
      * attempt to signup the user
      * @param email
@@ -49,9 +71,24 @@ class AuthService extends Service {
             attributes: {...attributes, email: email}
         })
             .then((user) => {
-                console.log("User Signup Successful")
-                console.log(user)
-                success(user)
+
+                // also add the user into the VNS database
+                this.submit(
+                    'set_user',
+                    this.RequestMethod.POST,
+                    {
+                        name : email,
+                        email: email
+                    },
+                    (res) => {
+                        console.log("User signup successful")
+                        success(user)
+                    },
+                    (err) => {
+                        console.log("Failed to add the user data to database")
+                        error(err)
+                    }
+                )
             })
             .catch((e) => {
                 console.log("ERROR Signup")

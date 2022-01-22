@@ -14,7 +14,7 @@ const LoginComponent = () => {
     const history = useHistory();
 
 
-    const {setUser} = useUser();
+    const {setUser, setUserID} = useUser();
 
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
@@ -25,8 +25,17 @@ const LoginComponent = () => {
         auth_service.userLogin(
             email, pass,
             (user) => {
+
+                // get the user_id from the vns database for this user
+                auth_service.getUserIdFromEmail(user.attributes.email, (res) => {
+                    // set the user_id in the context
+                    setUserID(res.id)
+                    // redirect to the home page
+                    history.push('/')
+                })
+
                 console.log("USER IS")
-                console.log(user)
+                console.log(user.attributes.email)
                 setUser(user)
                 history.push('/')
             },

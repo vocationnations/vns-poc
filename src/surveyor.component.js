@@ -33,7 +33,8 @@ const SurveyorComponent = ({setRadialData}) => {
         <div className="container-fluid">
             <div className="vspacer-10"/>
             <div className="module-stepbar d-flex">
-                <ul className="steps six clearfix justify-content-center" id="step-buttons">
+                <ul className="steps six clearfix justify-content-center"
+                    id="step-buttons">
                     {
                         steps.map((s, i) => {
                             return <li key={i}
@@ -43,6 +44,7 @@ const SurveyorComponent = ({setRadialData}) => {
                     }
                 </ul>
             </div>
+            z
             <hr/>
             {
                 steps.map((r, i) => {

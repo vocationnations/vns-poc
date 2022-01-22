@@ -62,20 +62,14 @@ class Service {
             axios_instance
                 .post(endpoint, payload)
                 .then(res => {
-                    if (res.data.statusText === 'success') {
-                        success(res.data)
-                    } else {
-                        error(res.data)
-                    }
+                    success(res.data)
                 })
                 .catch(err => error(err))
         } else if (method === this.RequestMethod.GET) {
             axios_instance
                 .get(endpoint)
                 .then(res => {
-                    if (res.status === 200) {
-                        success(res.data)
-                    } else error(res)
+                    success(res.data)
                 })
                 .catch(err => error(err))
         } else {
