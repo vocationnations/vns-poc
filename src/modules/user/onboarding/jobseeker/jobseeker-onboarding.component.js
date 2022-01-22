@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     JobseekerOnboardingClimateEntryComponent,
     JobseekerOnboardingCultureEntryComponent,
@@ -32,16 +32,25 @@ const OnBoardingMessage = ({setStepNumber}) => {
 const JobseekerOnboardingComponent = () => {
 
     const [stepNumber, setStepNumber] = useState(0);
+    const [userReport, setUserReport] = useState(null);
 
-    const advanceStep = () => {
+    const advanceStep = (key, record) => {
 
-        console.log("STEP NUMBER: " + stepNumber);
         if (stepNumber < steps.length) {
+            setUserReport(prev => {
+                let new_obj  = {};
+                new_obj[key] = record;
+                return {...prev, ...new_obj}
+            });
             setStepNumber((prev) => {
                 return prev + 1;
             })
         }
     }
+
+    useEffect(() => {
+        console.log("UserReport: ", userReport)
+    }, [stepNumber]);
 
     const steps = [
         {
@@ -52,7 +61,7 @@ const JobseekerOnboardingComponent = () => {
         {
             name     : 'Skills Selection',
             component: <JobseekerOnboardingSkillsSelectionComponent
-                advanceStep={advanceStep}/>
+                advanceStep={advanceStep} userReport={userReport}/>
         },
         {
             name     : 'Culture Entry',

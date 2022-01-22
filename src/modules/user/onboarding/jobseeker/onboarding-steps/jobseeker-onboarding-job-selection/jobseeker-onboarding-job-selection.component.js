@@ -53,7 +53,7 @@ const JobseekerOnboardingJobSelectionComponent = ({advanceStep}) => {
     const updateUserProfession = () => {
         j_service.createUserProfession(selectedJob.title, selectedJob.code, userId, (data) => {
             console.log(data)
-            advanceStep()
+            advanceStep("job_selection", selectedJob)
         }, (error) => {
             console.log(error)
         })

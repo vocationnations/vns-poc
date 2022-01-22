@@ -8,25 +8,25 @@ const ShowSuggestions = ({returnedList, loading, setSelected}) => {
         return <div>Loading...</div>
     }
 
-    const handleSelected = (job) => {
-        setSelected(job)
-        setActive(job.code)
+    const handleSelected = (item) => {
+        setSelected(item)
+        setActive(item.code)
     }
 
     return returnedList.length > 0 && (
         <div className="list-group">
             {
-                returnedList.map((job, idx) => {
+                returnedList.map((item, idx) => {
 
 
-                    let _cls = active === job.code ? 'list-group-item' +
+                    let _cls = active === item.code ? 'list-group-item' +
                         '  active list-group-item-action' : 'list-group-item list-group-item-action'
 
                     return (
                         <a href="#" key={idx}
-                           onClick={() => handleSelected(job)}
+                           onClick={() => handleSelected(item)}
                            className={_cls}>
-                            {job.title}
+                            {item.title}
                         </a>
                     )
                 })

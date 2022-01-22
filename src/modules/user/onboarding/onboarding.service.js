@@ -25,6 +25,16 @@ class OnBoardingService extends Service {
             error_callback
         )
     }
+
+    getSkillsByOccupationId(occupation_id, success_callback, error_callback) {
+        this.submit(
+            'get_skills_by_occupation/' + occupation_id,
+            'GET',
+            {},
+            success_callback,
+            error_callback
+        )
+    }
 }
 
 export default OnBoardingService;

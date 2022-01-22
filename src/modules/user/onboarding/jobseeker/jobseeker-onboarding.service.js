@@ -33,6 +33,41 @@ class JobSeekerOnBoardingService extends Service {
             error_callback
         )
     }
+
+    /**
+     * createUserSkill
+     * @param skill_name the name of the skill to add
+     * @param skill_id the code of the skill from ONET
+     * @param user_id the id of the user for which to update the skill
+     * @param success_callback the function to call on success
+     * @param error_callback the function to call on error
+     */
+    createUserSkill(skill_name, skill_id, user_id, success_callback, error_callback) {
+        let payload = {
+            skill_name: skill_name,
+            skill_id  : skill_id,
+            user_id   : user_id
+        }
+        console.log(payload)
+        this.submit(
+            'create_user_skill',
+            'POST',
+            payload,
+            success_callback,
+            error_callback
+        )
+    }
+
+    createUserSkillManual(skill_payload, success_callback, error_callback) {
+        console.log(skill_payload)
+        this.submit(
+            'create_user_skill_manual',
+            'POST',
+            skill_payload,
+            success_callback,
+            error_callback
+        )
+    }
 }
 
 export default JobSeekerOnBoardingService;
