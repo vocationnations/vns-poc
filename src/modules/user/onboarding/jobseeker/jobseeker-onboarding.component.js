@@ -6,6 +6,8 @@ import {
     JobseekerOnboardingSkillsSelectionComponent
 } from "./onboarding-steps"
 
+import '../../../../steps.css'
+
 const OnBoardingMessage = ({setStepNumber}) => {
     return (
         <div className="container text-center">

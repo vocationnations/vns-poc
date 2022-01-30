@@ -1,18 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useHistory} from 'react-router-dom';
 import AuthService from "../../../auth/auth.service";
 import {useUser} from "../../../auth/context/user-provider";
-
 import './jobseeker-dashboard.component.css'
-import SurveyorComponent from "../../../../surveyor.component";
-import CultureRadialComponent
-    from "../../../culture-radial/culture-radial.component";
 
 const auth_service = new AuthService();
 
 const JobseekerDashboardComponent = () => {
-
-    const [radialData, setRadialData] = useState([100, 100, 100, 100])
 
     const history = useHistory()
 
@@ -52,21 +46,9 @@ const JobseekerDashboardComponent = () => {
                                             we
                                             appreciate your interest in our
                                             idea! </p>
-                        <p>In order to serve you better, we would like to
-                           understand
-                           your current state and culture better! </p>
-                        <p>Please go through the following matching process in
-                           order
-                           for
-                           us to serve you better! </p>
 
-                    </div>
-                    <div className="w-50">
-                        <CultureRadialComponent userSeries={radialData}/>
                     </div>
                 </div>
-
-                <SurveyorComponent setRadialData={setRadialData}/>
 
             </div>
         </div>

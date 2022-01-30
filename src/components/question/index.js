@@ -343,14 +343,15 @@ class Question extends Component {
     render() {
         return this.props.question_data !== null && (
             <div className="container-fluid w-100 p-0">
-                <h1>{this.props.question_data.question}</h1>
+                <h3>{this.props.question_data.question}</h3>
+                <hr/>
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className="row justify-content-center">
                         <Droppable droppableId="rank0">
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-5 w-15 rank0 p-2">
+                                    className="mr-2 w-15 rank0 p-0">
                                     {this.state.rank0.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -378,7 +379,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-3 w-15 rank1 p-2">
+                                    className="mr-2 w-15 rank1 p-2">
                                     {this.state.rank1.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -406,7 +407,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-3 w-15 rank2 p-2">
+                                    className="mr-2 w-15 rank2 p-2">
                                     {this.state.rank2.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -434,7 +435,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-3 w-15 rank3 p-2">
+                                    className="mr-2 w-15 rank3 p-2">
                                     {this.state.rank3.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -462,7 +463,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-3 w-15 rank4 p-2">
+                                    className="mr-2 w-15 rank4 p-2">
                                     {this.state.rank4.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -490,7 +491,7 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-3 w-15 bin p-2"
+                                    className="mr-2 w-15 bin p-2"
                                 >
                                     {this.state.bin.map((item, index) => (
                                         <Draggable
@@ -518,9 +519,11 @@ class Question extends Component {
 
                     </div>
                 </DragDropContext>
+                <hr/>
                 <button className="btn btn-primary"
-                        onClick={() => this.saveScore()}>Next
+                        onClick={() => this.saveScore()}>Next Question
                 </button>
+                <br/><br/>
             </div>
         );
     }

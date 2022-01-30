@@ -29,6 +29,10 @@ code {
     width : 15% !important;
 }
 
+.vspacer-10 {
+    height : 10px;
+}
+
 .vspacer-20 {
     height : 20px;
 }

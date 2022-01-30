@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Questions from '../../components/questions';
 
-const CultureSelectionTab = ({advanceStep, update, setRadialData}) => {
+const CultureSelectionTab = ({finalizeCultureEntry, update, setRadialData}) => {
   const [done, setDone]           = useState(false);
   const [finalData, setFinalData] = useState([]);
 
@@ -16,7 +16,7 @@ const CultureSelectionTab = ({advanceStep, update, setRadialData}) => {
         <Questions setDone={setDone} setFinalData={setFinalData}
                    setRadialData={setRadialData}/>
         {done && <button className="btn btn-success"
-                         onClick={() => advanceStep()}>Next</button>}
+                         onClick={() => finalizeCultureEntry("culture_entry", finalData)}>Next</button>}
       </div>
   )
 }
