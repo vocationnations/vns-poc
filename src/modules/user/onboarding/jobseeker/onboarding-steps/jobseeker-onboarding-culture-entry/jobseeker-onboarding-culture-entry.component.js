@@ -13,8 +13,6 @@ const JobseekerOnboardingCultureEntryComponent = ({advanceStep}) => {
         let value_copy = JSON.parse(JSON.stringify(value));
         value_copy.forEach((q) => delete q.answer.newState)
 
-        console.log(JSON.stringify(value_copy))
-
         advanceStep("culture_entry",
             {
                 radial_data  : radialData,
