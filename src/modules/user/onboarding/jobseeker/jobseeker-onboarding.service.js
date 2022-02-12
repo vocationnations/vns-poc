@@ -58,6 +58,54 @@ class JobSeekerOnBoardingService extends Service {
         )
     }
 
+    /**
+     * addCultureEntry
+     * @param radial_data
+     * @param success_callback
+     * @param error_callback
+     */
+    addCultureEntry(radial_data, success_callback, error_callback) {
+
+        this.submit(
+            'create_culture_entry',
+            'POST',
+            radial_data,
+            success_callback,
+            error_callback
+        )
+    }
+
+    getAllQuestionsAndSteps(success_callback, error_callback) {
+        this.submit(
+            'get_climate_questions',
+            'GET',
+            {},
+            (res1) => {
+
+                let new_res = JSON.parse(JSON.stringify(res1))
+
+                for (let q = 0; q < new_res.length; q++) {
+                    let q_id = new_res[q].id
+                    this.submit(
+                        'get_steps/' + q_id,
+                        'GET',
+                        {},
+                        (res2) => {
+                            new_res[q]["steps"] = res2
+                            console.log("CHECKING")
+                            new_res = JSON.parse(JSON.stringify(new_res))
+                        },
+                        (e) => console.log(e.message)
+                    )
+                }
+                success_callback(new_res)
+            },
+            (e) => console.log(e.message)
+        )
+    }
+
+    // addClimateEntry()
+
     createUserSkillManual(skill_payload, success_callback, error_callback) {
         console.log(skill_payload)
         this.submit(

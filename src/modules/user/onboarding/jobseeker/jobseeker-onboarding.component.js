@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {
-    JobseekerOnboardingClimateEntryComponent,
     JobseekerOnboardingCultureEntryComponent,
     JobseekerOnboardingJobSelectionComponent,
     JobseekerOnboardingSkillsSelectionComponent
@@ -33,8 +32,9 @@ const OnBoardingMessage = ({setStepNumber}) => {
 
 const JobseekerOnboardingComponent = () => {
 
-    const [stepNumber, setStepNumber] = useState(4);
+    const [stepNumber, setStepNumber] = useState(0);
     const [userReport, setUserReport] = useState(null);
+    const [end, setEnd]               = useState(false);
 
     const advanceStep = (key, record) => {
 
@@ -47,6 +47,8 @@ const JobseekerOnboardingComponent = () => {
             setStepNumber((prev) => {
                 return prev + 1;
             })
+        } else {
+            setEnd(true)
         }
     }
 
@@ -68,11 +70,6 @@ const JobseekerOnboardingComponent = () => {
         {
             name     : 'Culture Entry',
             component: <JobseekerOnboardingCultureEntryComponent
-                advanceStep={advanceStep}/>
-        },
-        {
-            name     : 'Climate Entry',
-            component: <JobseekerOnboardingClimateEntryComponent
                 advanceStep={advanceStep}/>
         }
     ]
@@ -97,7 +94,17 @@ const JobseekerOnboardingComponent = () => {
                 </div>
                 <hr/>
                 {
-                    steps.map((r, i) => {
+                    end &&
+                    <div className="text-center">
+                        Thank you for going through on-boarding. We will be in
+                        touch
+                        <br/>
+                        <a href={"https://twitter.com/vocationnations"}><i
+                            className="fa fa-twitter-square fa-3x text-primary"/></a>
+                    </div>
+                }
+                {
+                    !end && steps.map((r, i) => {
                         return stepNumber === i + 1 &&
                             <div key={i}>{r.component}</div>;
                     })
