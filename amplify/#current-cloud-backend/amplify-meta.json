@@ -18,11 +18,6 @@
       "providerPlugin"   : "awscloudformation",
       "dependsOn"        : [],
       "customAuth"       : false,
-      "providerMetadata" : {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-vnspoc-dev-135153-deployment/amplify-cfn-templates/auth/vnspoc48ab07f8-cloudformation-template.yml",
-        "logicalId"    : "authvnspoc48ab07f8"
-      },
-      "lastPushTimeStamp": "2022-01-15T19:02:16.521Z",
       "output"           : {
         "UserPoolId"      : "us-east-1_2DLkXRo2D",
         "AppClientIDWeb"  : "66jcp2sq7a1urv269bscmf7u9o",
@@ -31,7 +26,12 @@
         "IdentityPoolName": "vnspoc48ab07f8_identitypool_48ab07f8__dev",
         "UserPoolName"    : "vnspoc48ab07f8_userpool_48ab07f8"
       },
-      "lastPushDirHash"  : "MJjCEKYvBnMwDkiLlsyYWKovgkg="
+      "lastPushTimeStamp": "2022-02-12T17:59:06.836Z",
+      "providerMetadata" : {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-vnspoc-dev-135153-deployment/amplify-cfn-templates/auth/vnspoc48ab07f8-cloudformation-template.yml",
+        "logicalId"    : "authvnspoc48ab07f8"
+      },
+      "lastPushDirHash"  : "qD3aOMWivjUeRUvRqMKnYWVvwCE="
     }
   }
 }

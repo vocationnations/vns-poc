@@ -17,8 +17,6 @@ const OnBoardingMessage = ({setStepNumber}) => {
                  src="/images/onboarding/hello.png"/>
             <p className="lead w-50 mx-auto border-black pl-5 pr-5">
                 Thank you very much for signing up to VocatioNations.
-                We are very excited to have you on board. We would like to know
-                a little bit more about you.
                 Lets go through some steps so that we can refine your search and
                 increase your chances for perfect matches!
             </p>
