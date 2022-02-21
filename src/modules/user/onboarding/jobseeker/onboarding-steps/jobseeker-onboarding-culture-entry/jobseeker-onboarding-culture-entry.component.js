@@ -49,7 +49,7 @@ const JobseekerOnboardingCultureEntryComponent = ({advanceStep}) => {
 
     return (
         <div className="container-fluid border-black">
-            {error != '' && <div className="alert alert-danger">{error}</div>}
+            {error !== '' && <div className="alert alert-danger">{error}</div>}
 
             <div className="row">
                 <div className="col-lg-8 border-red">

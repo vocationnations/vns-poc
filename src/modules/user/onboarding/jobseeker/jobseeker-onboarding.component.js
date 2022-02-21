@@ -93,10 +93,23 @@ const JobseekerOnboardingComponent = () => {
                 <hr/>
                 {
                     end &&
-                    <div className="text-center">
-                        Thank you for going through on-boarding. We will be in
-                        touch
+                    <div className="col-lg-12 text-center">
+                        <div className="">
+                            Thank you for going through on-boarding. We will be
+                            in touch.
+                            <br/>
+                            In the meantime, please help us improve by taking a
+                            short survey <a
+                            href="https://www.surveymonkey.com/r/8JVK8KY">here</a>
+                        </div>
                         <br/>
+                        <div className="row col-lg-12">
+                            <div className="col-lg-2"/>
+                            <div className="col-lg-8">
+                                <hr/>
+                            </div>
+                            <div className="col-lg-2"/>
+                        </div>
                         <a href={"https://twitter.com/vocationnations"}><i
                             className="fa fa-twitter-square fa-3x text-primary"/></a>
                     </div>

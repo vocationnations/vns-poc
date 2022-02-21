@@ -22,7 +22,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-vnspoc-dev-135153-deployment/amplify-cfn-templates/auth/vnspoc48ab07f8-cloudformation-template.yml",
         "logicalId"    : "authvnspoc48ab07f8"
       },
-      "lastPushTimeStamp": "2022-02-12T18:01:11.493Z",
+      "lastPushTimeStamp": "2022-02-21T01:23:00.076Z",
       "output"           : {
         "UserPoolId"      : "us-east-1_2DLkXRo2D",
         "AppClientIDWeb"  : "66jcp2sq7a1urv269bscmf7u9o",
