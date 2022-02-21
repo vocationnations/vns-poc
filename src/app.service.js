@@ -2,7 +2,7 @@ import axios from "axios";
 import {firebaseApp} from "./config/firebase-config";
 
 const axios_instance = axios.create({
-    baseURL: "http://api.vocationations.com",
+    baseURL: "https://api.vocationations.com",
     headers: {
         'Content-Type': 'application/json'
     }
