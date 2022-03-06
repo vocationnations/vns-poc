@@ -3,6 +3,10 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import question from "../question";
 import {useUser} from "../../modules/auth/context/user-provider";
+import JobSeekerOnBoardingService
+    from "../../modules/user/onboarding/jobseeker/jobseeker-onboarding.service";
+
+const j_service = new JobSeekerOnBoardingService();
 
 const ClimateQuestionComponent = ({
                                       question_data,
@@ -10,39 +14,20 @@ const ClimateQuestionComponent = ({
                                   }) => {
 
     const [answer, setAnswer] = useState(question_data.steps[0]["id"])
+    const [errorMessage, setErrorMessage] = useState("")
 
     const { userId } = useUser();
 
-    useEffect(() => {
+    useEffect(async () => {
         // create a value field for intervals for slider
         let steps_len = question_data.steps.length - 1
-        question_data.steps.forEach((s, i) => {
+        await question_data.steps.forEach((s, i) => {
             question_data.steps[i]["value"] = (100 / steps_len) * (i)
         })
-    }, [question_data])
 
-    const marks = [
-        {
-            number: 1012,
-            value: 0,
-            label: '0°C',
-        },
-        {
-            number: 1012,
-            value: 20,
-            label: '20°C',
-        },
-        {
-            number: 1012,
-            value: 37,
-            label: '37°C',
-        },
-        {
-            number: 1012,
-            value: 100,
-            label: '100°C',
-        },
-    ];
+        handleSetAnswer(question_data.steps[0]["value"])
+
+    }, [question_data])
 
     const handleSetAnswer = (n) => {
         let idx = ((n * (question_data.steps.length-1)) / 100)
@@ -53,15 +38,22 @@ const ClimateQuestionComponent = ({
     }
 
     const nextQuestion = () => {
-        console.log("Answer: " + answer)
+        j_service.addClimateAnswer(
+            {
+                "question_id":question_data.id,
+                "step_id": answer,
+                "user_id": userId
+            },
+            (r) => {
+                console.log(r)
+                advanceQuestion()
 
-        // update the database
-        //  -> step_id = answer
-        //  -> question_id = question_data.id
-        //  -> userId
+            },
+            (e) => {
+                setErrorMessage(e.message)
+            }
+        )
 
-        // go to the next question
-        advanceQuestion()
     }
 
 
@@ -69,6 +61,9 @@ const ClimateQuestionComponent = ({
         <div className="container text-center col-lg-12">
             <div className="justify-content-center">
                 <h4>{question_data.title}</h4>
+                { errorMessage !== "" &&
+                    <div className="alert alert-danger">Error recording answer! Please try again later!</div>
+                }
                 <Box>
                     <Slider
                         aria-label="Restricted values"
@@ -80,7 +75,7 @@ const ClimateQuestionComponent = ({
                     />
                 </Box>
                 <button className="btn btn-primary align-self-center"
-                        onClick={() => nextQuestion()}>Next
+                        onClick={() => {nextQuestion()}}>Next
                 </button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import JobSeekerOnBoardingService from "../../jobseeker-onboarding.service";
 import {useUser} from "../../../../../auth/context/user-provider";
 import ClimateQuestionsComponent
@@ -6,53 +6,26 @@ import ClimateQuestionsComponent
 
 const j_service = new JobSeekerOnBoardingService()
 
-j_service.getAllQuestionsAndSteps(
-    (r) => {
-        console.log(r)
-    },
-    (e) => {
-        console.log(e)
-    }
-)
-
-const default_questions = [
-    {
-        "id"   : 0,
-        "title": "What is your salary expectation?",
-        "steps": [
-            {
-                id: 1,
-                number: 30000,
-                label : '$30,000',
-                question_id: 1,
-            },
-            {
-                id: 2,
-                number: 50000,
-                label : '$30,000 - $50,000',
-                question_id: 1,
-            },
-            {
-                id: 3,
-                number: 80000,
-                label: '$50,000 - $80,000',
-                question_id: 1
-            },
-            {
-                id: 4,
-                number: 100000,
-                label: '> $100,000',
-                question_id: 1
-            },
-        ]
-    }
-];
+const default_questions = [];
 
 const JobseekerOnboardingClimateEntryComponent = ({advanceStep}) => {
 
     const {userId} = useUser();
     const [done, setDone] = useState(false)
     const [questions, setQuestions] = useState(default_questions)
+
+    useEffect(() => {
+        j_service.getAllQuestionsAndSteps(
+            (r) => {
+                console.log("QUESTIONS!")
+                console.log(r)
+                setQuestions(r)
+            },
+            (e) => {
+                console.log(e)
+            }
+        )
+    },[])
 
     return (
         <div className="container-fluid">

@@ -75,6 +75,16 @@ class JobSeekerOnBoardingService extends Service {
         )
     }
 
+    addClimateAnswer(payload, success_callback, error_callback) {
+        this.submit(
+            'create_climate_question_answer',
+            'POST',
+            payload,
+            success_callback,
+            error_callback
+        )
+    }
+
     getAllQuestionsAndSteps(success_callback, error_callback) {
         this.submit(
             'get_climate_questions',
@@ -83,23 +93,30 @@ class JobSeekerOnBoardingService extends Service {
             (res1) => {
 
                 let new_res = JSON.parse(JSON.stringify(res1))
-                console.log("NEW RES:")
-                console.log(new_res)
+                // console.log("NEW RES:")
 
+                let done = 0
                 for (let q = 0; q < new_res.length; q++) {
                     let q_id = new_res[q].id
+                    console.log("ID: " + q_id)
                     this.submit(
                         'get_steps/' + q_id,
                         'GET',
                         {},
                         (res2) => {
                             new_res[q]["steps"] = res2
-                            new_res = JSON.parse(JSON.stringify(new_res))
+                            new_res             = JSON.parse(JSON.stringify(new_res))
+                            done += 1;
+
+                            if (done === new_res.length) {
+                                success_callback(new_res)
+
+                            }
                         },
                         (e) => console.log(e.message)
                     )
                 }
-                success_callback(new_res)
+
             },
             (e) => console.log(e.message)
         )
