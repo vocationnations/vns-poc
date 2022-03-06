@@ -31,7 +31,7 @@ const OnBoardingMessage = ({setStepNumber}) => {
 
 const JobseekerOnboardingComponent = () => {
 
-    const [stepNumber, setStepNumber] = useState(3);
+    const [stepNumber, setStepNumber] = useState(1);
     const [userReport, setUserReport] = useState(null);
     const [end, setEnd]               = useState(false);
 
