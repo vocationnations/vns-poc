@@ -352,6 +352,7 @@ class Question extends Component {
                                 <div
                                     ref={provided.innerRef}
                                     className="mr-2 w-15 rank0 p-0">
+                                    <strong>Unspecified</strong>
                                     {this.state.rank0.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -380,6 +381,7 @@ class Question extends Component {
                                 <div
                                     ref={provided.innerRef}
                                     className="mr-2 w-15 rank1 p-2">
+                                    <strong>Strongly Agree</strong>
                                     {this.state.rank1.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -408,6 +410,7 @@ class Question extends Component {
                                 <div
                                     ref={provided.innerRef}
                                     className="mr-2 w-15 rank2 p-2">
+                                    <strong>Agree</strong>
                                     {this.state.rank2.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -436,6 +439,7 @@ class Question extends Component {
                                 <div
                                     ref={provided.innerRef}
                                     className="mr-2 w-15 rank3 p-2">
+                                    <strong>Neutral</strong>
                                     {this.state.rank3.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -464,6 +468,7 @@ class Question extends Component {
                                 <div
                                     ref={provided.innerRef}
                                     className="mr-2 w-15 rank4 p-2">
+                                    <strong>Disagree</strong>
                                     {this.state.rank4.map((item, index) => (
                                         <Draggable
                                             key={item.id}
@@ -491,8 +496,8 @@ class Question extends Component {
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
-                                    className="mr-2 w-15 bin p-2"
-                                >
+                                    className="mr-2 w-15 bin p-2">
+                                    <strong>Strongly Disagree</strong>
                                     {this.state.bin.map((item, index) => (
                                         <Draggable
                                             key={item.id}

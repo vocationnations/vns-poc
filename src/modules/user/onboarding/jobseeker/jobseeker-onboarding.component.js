@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
+    JobseekerOnboardingClimateEntryComponent,
     JobseekerOnboardingCultureEntryComponent,
     JobseekerOnboardingJobSelectionComponent,
     JobseekerOnboardingSkillsSelectionComponent
@@ -30,7 +31,7 @@ const OnBoardingMessage = ({setStepNumber}) => {
 
 const JobseekerOnboardingComponent = () => {
 
-    const [stepNumber, setStepNumber] = useState(0);
+    const [stepNumber, setStepNumber] = useState(3);
     const [userReport, setUserReport] = useState(null);
     const [end, setEnd]               = useState(false);
 
@@ -69,6 +70,10 @@ const JobseekerOnboardingComponent = () => {
             name     : 'Culture Entry',
             component: <JobseekerOnboardingCultureEntryComponent
                 advanceStep={advanceStep}/>
+        },
+        {
+            name : "Climate Entry",
+            component: <JobseekerOnboardingClimateEntryComponent advanceStep={advanceStep} />
         }
     ]
 

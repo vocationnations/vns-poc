@@ -83,6 +83,8 @@ class JobSeekerOnBoardingService extends Service {
             (res1) => {
 
                 let new_res = JSON.parse(JSON.stringify(res1))
+                console.log("NEW RES:")
+                console.log(new_res)
 
                 for (let q = 0; q < new_res.length; q++) {
                     let q_id = new_res[q].id
@@ -92,7 +94,6 @@ class JobSeekerOnBoardingService extends Service {
                         {},
                         (res2) => {
                             new_res[q]["steps"] = res2
-                            console.log("CHECKING")
                             new_res = JSON.parse(JSON.stringify(new_res))
                         },
                         (e) => console.log(e.message)

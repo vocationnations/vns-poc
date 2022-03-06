@@ -80,7 +80,11 @@ const JobseekerOnboardingSkillsSelectionComponent =
               const [listSuggestions, setListSuggestions]       = React.useState([]);
               const [loading, setLoading]                       = useState(false);
               const [selectedSkill, setSelectedSkill]           = useState(null);
-              const [manualEntryEnabled, setManualEntryEnabled] = useState(false);
+              const [manualEntryEnabled, setManualEntryEnabled] = useState(true);
+              // NOTE: We are setting the manualEntryEnabled to true because
+              // the ONET API does not capture all the skills and the UI
+              // doesn't have the ability to select more than one skill from
+              // the drop-down list.
               const [error, setError]                           = useState('');
 
               useEffect(() => {

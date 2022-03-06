@@ -15,8 +15,16 @@ const state = {
 
 const initialSeries = [
     {
-        name: "VocationNations",
-        data: [44, 76, 78, 13]
+        name: "Tesla Inc.",
+        data: [100, 30, 40, 100]
+    },
+    {
+        name: "Activision Inc.",
+        data: [30, 100, 50, 20]
+    },
+    {
+        name: "Zappios Inc.",
+        data: [90, 20, 100, 20]
     },
     {
         name: "POP_THIS!",

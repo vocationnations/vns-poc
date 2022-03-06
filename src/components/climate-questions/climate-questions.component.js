@@ -3,18 +3,12 @@ import ClimateQuestionComponent from "./climate-question.component";
 
 const ClimateQuestionsComponent = ({
                                        setDone,
-                                       questions,
-                                       finalizeClimateEntry
+                                       questions
                                    }) => {
 
     const [questionNumber, setQuestionNumber] = useState(0);
-    const [answer, setAnswer]                 = useState(null);
-
 
     const advanceQuestion = () => {
-
-        console.log("ANswer: " + answer)
-
         if (questions.length - 1 === questionNumber) {
             setDone(true);
         }
@@ -30,10 +24,10 @@ const ClimateQuestionsComponent = ({
             <>
                 <ClimateQuestionComponent
                     question_data={questions[questionNumber]}
-                    advanceQuestion={advanceQuestion} setAnswer={setAnswer}/>
+                    advanceQuestion={advanceQuestion} />
             </>
         ) : (
-            <div>
+            <div className="text-center">
                 <p className="lead">Finished answering all questions! Proceed further!</p>
                 <br />
             </div>

@@ -1,29 +1,29 @@
 .rank0 {
-    border: 1px solid #FAFAFA;
+    border: 1px solid #222;
     background-color: #FAFAFA !important;
 }
 
 .rank1 {
-    border: 1px solid #85924B;
-    background-color: #00E643 !important;
+    border: 1px solid #222;
+    background-color: #CCC !important;
 }
 
 .rank2 {
-    border: 1px solid #85924B;
-    background-color: #6DD18A !important;
+    border: 1px solid #222;
+    background-color: #CCC !important;
 }
 
 .rank3 {
-    border: 1px solid #C8C634;
-    background-color: #FFFB91 !important;
+    border: 1px solid #222;
+    background-color: #CCC !important;
 }
 
 .rank4 {
-    border: 1px solid #D6BA2F;
-    background-color: #FFF70A !important;
+    border: 1px solid #222;
+    background-color: #CCC !important;
 }
 
 .bin {
-    border: 1px solid red;
-    background-color: #F3B6C8 !important;
+    border: 1px solid #222;
+    background-color: #CCC !important;
 }
