@@ -41,7 +41,7 @@ const data = [
     }
 ]
 
-const JobSeekerPitch = () => {
+const JobSeekerPitch = ({}) => {
     return (
         <>
             {
@@ -57,7 +57,7 @@ const JobSeekerPitch = () => {
                                             <h6 className="text-uppercase">{r.title}</h6>
                                             <div className="vspacer-20"/>
                                             <p className="lead">{r.text}</p>
-                                            <Link to="/signup">
+                                            <Link to="/signup?type=jobseeker">
                                                 <button
                                                     className="btn btn-info"
                                                 >{r.button_text}
@@ -88,7 +88,7 @@ const JobSeekerPitch = () => {
                                             <h6 className="text-uppercase">{r.title}</h6>
                                             <div className="vspacer-20"/>
                                             <p className="lead">{r.text}</p>
-                                            <Link to="/signup">
+                                            <Link to="/signup?type=jobseeker">
                                                 <button
                                                     className="btn btn-info"
                                                 >{r.button_text}

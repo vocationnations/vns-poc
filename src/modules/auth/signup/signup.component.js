@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import AuthService from "../auth.service";
 import {Button, ButtonGroup} from 'react-bootstrap';
+import {useLocation} from "react-router-dom";
 
 import './signup.component.css'
 import {Auth} from "aws-amplify";
@@ -9,12 +10,22 @@ const auth_service = new AuthService();
 
 const UserTypes = ["employer", "jobseeker"]
 
+// A custom hook that builds on useLocation to parse
+// the query string for you.
+function useQuery() {
+    const {search} = useLocation();
+
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 
 const SignupComponent = () => {
 
+    let query          = useQuery();
+    let user_type_code = query.get("type") === "jobseeker" ? 1 : 0;
+
     const [email, setEmail]           = useState('')
     const [pass, setPass]             = useState('')
-    const [userType, setUserType]     = useState(0);
+    const [userType, setUserType]     = useState(user_type_code);
     const [success, setSuccess]       = useState('');
     const [errMessage, setErrMessage] = useState('')
 
