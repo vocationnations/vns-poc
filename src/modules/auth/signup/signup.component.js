@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import AuthService from "../auth.service";
-import {useHistory} from 'react-router-dom';
 import {Button, ButtonGroup} from 'react-bootstrap';
 
 import './signup.component.css'
@@ -13,8 +12,6 @@ const UserTypes = ["employer", "jobseeker"]
 
 const SignupComponent = () => {
 
-    const history = useHistory();
-
     const [email, setEmail]           = useState('')
     const [pass, setPass]             = useState('')
     const [userType, setUserType]     = useState(0);
@@ -25,12 +22,12 @@ const SignupComponent = () => {
         auth_service.userSignup(
             email, pass, () => {
                 // setUser(user)
-                let login_link  = '/login/'
                 let confirm_url = window.location.protocol + '//' + window.location.host + '/#/confirm/' + email
                 setSuccess("Successfully signed up! Please check your email." +
                     " Once you get the code, go to this URL <a" +
-                    " href='" + confirm_url + "'}>" + confirm_url + "</a>" +
+                    " href='" + confirm_url + "'>" + confirm_url + "</a>" +
                     " to activate your account!")
+                setErrMessage("")
             },
             (err) => setErrMessage(err.message),
             {
@@ -51,7 +48,7 @@ const SignupComponent = () => {
                 {success !== "" &&
                     <div className="alert alert-success"
                          dangerouslySetInnerHTML={{__html: success}}/>}
-                {errMessage && <div className="alert alert-danger"><i
+                {errMessage !== "" && <div className="alert alert-danger"><i
                     className="fas fa-times"/> {errMessage}</div>}
                 <div className="vspacer-20"/>
                 <h3 className="font-weight-bolder text-uppercase">sign up</h3>
