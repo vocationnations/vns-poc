@@ -27,10 +27,10 @@ const ManualEntry = ({userId, advanceStep, setError}) => {
         j_service.createUserSkillManual(
             payload,
             (data) => {
-                advanceStep("skills_manual", payload)
+                advanceStep("skills_manual", data)
             },
             (err) => {
-                setError(setError)
+                setError(err)
             }
         )
     }
@@ -118,7 +118,7 @@ const JobseekerOnboardingSkillsSelectionComponent =
               }, [])
 
               const updateUserSkill = () => {
-                  j_service.createUserSkill(selectedSkill.title, selectedSkill.code, userId, (data) => {
+                  j_service.createUserSkill(selectedSkill.title, selectedSkill.code, userId, () => {
                       let obj = {
                           code   : selectedSkill.code,
                           title  : selectedSkill.title,
@@ -131,8 +131,7 @@ const JobseekerOnboardingSkillsSelectionComponent =
               }
 
               return (<div className="container-fluid text-center">
-                  <h4>What kind of skills do you posses as
-                      "{userReport.title}"?</h4>
+                  <h4>What kind of skills do you possess?</h4>
                   <div className="vspacer-20"/>
                   {error !== '' &&
                       <div className="alert alert-danger">{error}</div>}
