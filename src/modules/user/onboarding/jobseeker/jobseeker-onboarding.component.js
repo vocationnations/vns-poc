@@ -7,6 +7,11 @@ import {
 } from "./onboarding-steps"
 
 import '../../../../steps.css'
+import {useUser} from "../../../auth/context/user-provider";
+import AuthService from "../../../auth/auth.service";
+import {useHistory} from "react-router-dom";
+
+const auth_service = new AuthService();
 
 const OnBoardingMessage = ({setStepNumber}) => {
     return (
@@ -35,6 +40,9 @@ const JobseekerOnboardingComponent = () => {
     const [userReport, setUserReport] = useState(null);
     const [end, setEnd]               = useState(false);
 
+    const {user}  = useUser();
+    const history = useHistory()
+
     const advanceStep = (key, record) => {
 
         if (stepNumber < steps.length) {
@@ -54,6 +62,12 @@ const JobseekerOnboardingComponent = () => {
     useEffect(() => {
         console.log("UserReport: ", userReport)
     }, [stepNumber]);
+
+    const logout = () => {
+        auth_service.userLogout();
+        history.push('/')
+
+    }
 
     const steps = [
         {
@@ -80,8 +94,17 @@ const JobseekerOnboardingComponent = () => {
 
     return (
         <div>
-            <div className="container-fluid">
+            <div className="container-fluid p-0">
                 <div className="vspacer-10"/>
+                <div className="container-fluid text-center">
+                    Welcome <b>{user.attributes.email}</b>
+                    <br/><br/>
+                    <button className="btn btn-outline-danger"
+                            onClick={() => logout()}>Logout
+                    </button>
+                </div>
+                <hr/>
+
                 <div className="module-stepbar d-flex">
                     <ul className="steps six clearfix justify-content-center"
                         id="step-buttons">

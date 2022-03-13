@@ -80,7 +80,7 @@ class AuthService extends Service {
                         name : email,
                         email: email
                     },
-                    (res) => {
+                    () => {
                         console.log("User signup successful")
                         success(user)
                     },
@@ -100,10 +100,12 @@ class AuthService extends Service {
     /**
      * Logs out the currently logged in user
      */
-    userLogout() {
-        Auth.signOut({
-            global: true
-        })
+    async userLogout() {
+        try {
+            await Auth.signOut({global: true});
+        } catch (error) {
+            console.log('error signing out: ', error);
+        }
     }
 
 
