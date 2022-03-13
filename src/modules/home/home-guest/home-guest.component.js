@@ -18,7 +18,7 @@ const HomeGuestComponent = () => {
             <HeroSection/>
             <UserTypeSelectionSection userType={userType} update={setUserType}/>
             {userType !== null && <SalesPitchSection userType={userType}/>}
-            <CallToActionSection/>
+            <CallToActionSection userType={userType}/>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const CallToActionSection = () => {
+const CallToActionSection = ({userType}) => {
     return (
         <section className=" p-0">
             <div className="container text-center">
@@ -11,7 +11,7 @@ const CallToActionSection = () => {
                     Are you excited about learning more? Sign up today!
                 </p>
                 <br/>
-                <Link to="/signup">
+                <Link to={"/signup?type=" + userType}>
                     <button
                         className="btn btn-primary btn-lg"
                     >Sign up
