@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import question from "../question";
 import {useUser} from "../../modules/auth/context/user-provider";
 import JobSeekerOnBoardingService
     from "../../modules/user/onboarding/jobseeker/jobseeker-onboarding.service";
@@ -22,7 +21,7 @@ const ClimateQuestionComponent = ({
         // create a value field for intervals for slider
         let steps_len = question_data.steps.length - 1
         await question_data.steps.forEach((s, i) => {
-            question_data.steps[i]["value"] = (100 / steps_len) * (i)
+            question_data.steps[i]["value"] = (100 / steps_len) * (question_data.steps[i]["number"] - 1)
         })
 
         handleSetAnswer(question_data.steps[0]["value"])
