@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import {Auth} from "aws-amplify";
-import {useHistory, useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 
 const UserConfirmComponent = () => {
 
     const {email} = useParams();
-    const history = useHistory();
 
 
     const [success, setSuccess] = useState("")
-    const [error, setError] = useState('')
+    const [error, setError]     = useState('')
 
     const [confirmationCode, setConfirmationCode] = useState('')
 
@@ -22,7 +21,7 @@ const UserConfirmComponent = () => {
                     setSuccess("Successfully confirm. Redirecting to login" +
                         " page...!")
                     setTimeout(() => {
-                        history.push('/login')
+                        window.location.href = '/login';
                     }, 2000)
                 })
                 .catch(e => setError(e))
@@ -46,9 +45,9 @@ const UserConfirmComponent = () => {
             </div>
             <div className="w-50 mx-auto">
                 {error !== "" &&
-                <div className="alert alert-danger">{error}</div>}
+                    <div className="alert alert-danger">{error}</div>}
                 {success !== "" &&
-                <div className="alert alert-success">{success}</div>}
+                    <div className="alert alert-success">{success}</div>}
                 <div className="vspacer-20"/>
                 <label>Email:</label>
                 <input

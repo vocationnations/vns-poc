@@ -17,7 +17,6 @@ const UserProvider = ({children}) => {
     }, [user])
 
     useEffect(() => {
-
         Hub.listen('auth', (data) => {
             const {payload} = data;
             if (payload.event === 'signIn') {

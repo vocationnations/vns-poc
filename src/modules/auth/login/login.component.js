@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import AuthService from "../auth.service";
-import {useHistory} from 'react-router-dom';
 import {useUser} from "../context/user-provider";
 
 import './login.component.css'
@@ -10,8 +9,6 @@ const auth_service = new AuthService();
 
 
 const LoginComponent = () => {
-
-    const history = useHistory();
 
 
     const {setUser, setUserID} = useUser();
@@ -31,13 +28,13 @@ const LoginComponent = () => {
                     // set the user_id in the context
                     setUserID(res.id)
                     // redirect to the home page
-                    history.push('/')
+                    window.location.href = '/a';
                 })
 
                 console.log("USER IS")
                 console.log(user.attributes.email)
                 setUser(user)
-                history.push('/')
+                window.location.href = '/a';
             },
             (err) => setErrMessage(err.message))
     }

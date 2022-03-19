@@ -12,7 +12,7 @@ const CultureSelectionTab = ({finalizeCultureEntry, update, setRadialData}) => {
   }, [done])
 
   return (
-      <div className="container-fluid">
+      <div className="container-fluid text-center">
         <Questions setDone={setDone} setFinalData={setFinalData}
                    setRadialData={setRadialData}/>
         {done && <button className="btn btn-success"
