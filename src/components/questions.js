@@ -80,9 +80,7 @@ const Questions = ({setDone, setFinalData, setRadialData}) => {
     if (questions.length - 1 === questionNumber) {
       setDone(true);
     }
-    setQuestionNumber((prev) => {
-      return prev += 1
-    })
+    setQuestionNumber((prev) => prev += 1)
 
   }
 
@@ -111,7 +109,8 @@ const Questions = ({setDone, setFinalData, setRadialData}) => {
                         setNumericalScores={setNumericalScores}
               />
           ) : (
-              <div>Finished answering candidate questions! Proceed to next step!<br/><br/>
+              <div className="text-center">Finished answering the culture
+                                           questions!<br/><br/>
               </div>
           )
         }

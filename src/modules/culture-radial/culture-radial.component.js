@@ -47,7 +47,7 @@ const CultureRadialComponent: React.FunctionComponent<ICultureRadialProps> = ({u
 
     return (
         <div className="container">
-            <h4 className="text-center">Culture Radial</h4>
+            <h6 className="text-center">Culture Radial</h6>
             <Chart
                 options={state.options}
                 series={series}

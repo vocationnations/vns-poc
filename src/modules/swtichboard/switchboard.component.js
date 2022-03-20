@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {useUser} from "../auth/context/user-provider";
-import JobseekerOnboardingComponent from "../user/onboarding/jobseeker/jobseeker-onboarding.component";
-import JobseekerDashboardComponent from "../user/dashboard/jobseeker/jobseeker-dashboard.component";
 import JobseekerSwitchboardComponent
     from "./jobseeker-switchboard/jobseeker-switchboard.component";
 import EmployerSwitchboardComponent

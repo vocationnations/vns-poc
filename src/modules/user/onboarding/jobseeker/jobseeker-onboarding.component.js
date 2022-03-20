@@ -9,9 +9,9 @@ import {
 import '../../../../steps.css'
 import {useUser} from "../../../auth/context/user-provider";
 import AuthService from "../../../auth/auth.service";
-import {useHistory} from "react-router-dom";
 
 const auth_service = new AuthService();
+
 
 const OnBoardingMessage = ({setStepNumber}) => {
     return (
@@ -40,8 +40,7 @@ const JobseekerOnboardingComponent = () => {
     const [userReport, setUserReport] = useState(null);
     const [end, setEnd]               = useState(false);
 
-    const {user}  = useUser();
-    const history = useHistory()
+    const {user} = useUser();
 
     const advanceStep = (key, record) => {
 
@@ -63,11 +62,18 @@ const JobseekerOnboardingComponent = () => {
         console.log("UserReport: ", userReport)
     }, [stepNumber]);
 
-    const logout = () => {
-        auth_service.userLogout();
-        history.push('/')
+    const logout = async () => {
+        await auth_service.userLogout();
+        window.location.href = '/';
 
     }
+
+    // make sure that the user is no longer firsttime when they finish the onboarding
+    useEffect(async () => {
+        if (end) {
+            await auth_service.changeUserAttribute("custom:vn:firsttime", "false")
+        }
+    }, [end])
 
     const steps = [
         {
@@ -86,8 +92,9 @@ const JobseekerOnboardingComponent = () => {
                 advanceStep={advanceStep}/>
         },
         {
-            name : "Climate Entry",
-            component: <JobseekerOnboardingClimateEntryComponent advanceStep={advanceStep} />
+            name     : "Climate Entry",
+            component: <JobseekerOnboardingClimateEntryComponent
+                advanceStep={advanceStep}/>
         }
     ]
 

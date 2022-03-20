@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
+import JobSeekerOnBoardingService
+    from "../../modules/user/onboarding/jobseeker/jobseeker-onboarding.service";
+import {CultureSelectionTab} from "../../tabs";
 import CultureRadialComponent
-    from "../../../../../culture-radial/culture-radial.component";
-import {CultureSelectionTab} from "../../../../../../tabs";
-import JobSeekerOnBoardingService from "../../jobseeker-onboarding.service";
-import {useUser} from "../../../../../auth/context/user-provider";
+    from "../../modules/culture-radial/culture-radial.component";
+import {useUser} from "../../modules/auth/context/user-provider";
 
-const j_service = new JobSeekerOnBoardingService()
+const j_service = new JobSeekerOnBoardingService();
 
-const JobseekerOnboardingCultureEntryComponent = ({advanceStep}) => {
+const StandaloneCultureEntryComponent = () => {
 
     const {userId} = useUser();
 
     const [radialData, setRadialData]     = useState([100, 100, 100, 100])
-    const [, setCultureInput] = useState(null);
+    const [_, setCultureInput] = useState(null);
     const [error, setError]               = useState('');
+
 
     const finalizeCultureEntry = (name, value) => {
         // get the string value of answer json object
@@ -31,18 +33,14 @@ const JobseekerOnboardingCultureEntryComponent = ({advanceStep}) => {
 
         j_service.addCultureEntry(
             payload,
-            () => {
-                advanceStep("culture_entry",
-                    {
-                        radial_data  : radialData,
-                        detailed_data: value_copy
-                    }
-                )
+            (res) => {
+                console.log(res);
             },
             (err) => {
                 setError(err.message)
             }
         )
+        window.location.href = '/a';
 
 
     }
@@ -65,4 +63,5 @@ const JobseekerOnboardingCultureEntryComponent = ({advanceStep}) => {
         </div>
     );
 }
-export default JobseekerOnboardingCultureEntryComponent
+
+export default StandaloneCultureEntryComponent;
