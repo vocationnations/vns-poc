@@ -300,9 +300,9 @@ class Question extends Component {
         })
 
         return {
+            "clan"     : clan,
             "adhocracy": adhocracy,
             "market"   : market,
-            "clan"     : clan,
             "hierarchy": hierarchy
         }
 
@@ -322,10 +322,10 @@ class Question extends Component {
         this.props.setNumericalScores(
             prev => {
                 return {
-                    adhocracy: prev.adhocracy + numerical_scores.adhocracy,
-                    hierarchy: prev.hierarchy + numerical_scores.hierarchy,
                     clan     : prev.clan + numerical_scores.clan,
+                    adhocracy: prev.adhocracy + numerical_scores.adhocracy,
                     market   : prev.market + numerical_scores.market,
+                    hierarchy: prev.hierarchy + numerical_scores.hierarchy,
                 }
             }
         )

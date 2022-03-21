@@ -72,7 +72,7 @@ const questions = [
 const Questions = ({setDone, setFinalData, setRadialData}) => {
   const [questionNumber, setQuestionNumber]   = useState(0);
   const [numericalScores, setNumericalScores] = useState({
-    "adhocracy": 0, "hierarchy": 0, "clan": 0, "market": 0
+    "clan": 0, "adhocracy": 0, "market": 0, "hierarchy": 0
   })
 
   const advanceQuestion = () => {
@@ -85,16 +85,16 @@ const Questions = ({setDone, setFinalData, setRadialData}) => {
   }
 
   useEffect(() => {
-    console.log(numericalScores);
+    console.log("Numerical scores: " + numericalScores);
 
     let raw_numerical_scores = Object.values(numericalScores)
-    console.log(raw_numerical_scores)
+    console.log("Raw Numerical scores: " + raw_numerical_scores)
     let final_radial_scores = []
-    console.log(questionNumber)
+    console.log("question number: " + questionNumber)
     for (let i = 0, length = raw_numerical_scores.length; i < length; i++) {
       final_radial_scores[i] = raw_numerical_scores[i] / questionNumber;
     }
-    console.log(final_radial_scores)
+    console.log("Final radial scores: " + final_radial_scores)
     setRadialData(final_radial_scores)
 
   }, [numericalScores])

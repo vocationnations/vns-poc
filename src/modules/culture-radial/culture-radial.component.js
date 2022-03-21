@@ -8,7 +8,7 @@ const state = {
             id: "basic-bar"
         },
         xaxis: {
-            categories: ["Adhocracy", "Hierarchy", "Clan", "Market"]
+            categories: ["Clan", "Adhocracy", "Market", "Hierarchy"]
         }
     }
 };
