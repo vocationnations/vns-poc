@@ -33,7 +33,7 @@ const SignupComponent = () => {
         auth_service.userSignup(
             email, pass, () => {
                 // setUser(user)
-                let confirm_url = window.location.protocol + '//' + window.location.host + '/#/confirm/' + email
+                let confirm_url = window.location.protocol + '//' + window.location.host + '/confirm/' + email
                 setSuccess("Successfully signed up! Please check your email." +
                     " Once you get the code, go to this URL <a" +
                     " href='" + confirm_url + "'>" + confirm_url + "</a>" +
