@@ -108,6 +108,26 @@ class AuthService extends Service {
         }
     }
 
+    /**
+     * Updates the user's attribute in AWS Cognito account
+     * @param attribute_name
+     * @param value
+     * @returns {Promise<void>}
+     */
+    async changeUserAttribute(attribute_name, value) {
+        let user = await Auth.currentAuthenticatedUser();
+        try {
+            await Auth.updateUserAttributes(user,
+                {
+                    [attribute_name]: value
+                }
+            )
+            console.log(attribute_name + " updated to " + value);
+        } catch (error) {
+            console.log('error updating user attribute: ', error);
+        }
+    }
+
 
 }
 

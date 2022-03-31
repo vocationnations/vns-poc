@@ -13,6 +13,7 @@ import {useHistory} from "react-router-dom";
 
 const auth_service = new AuthService();
 
+
 const OnBoardingMessage = ({setStepNumber}) => {
     return (
         <div className="container text-center">
@@ -68,6 +69,14 @@ const JobseekerOnboardingComponent = () => {
         history.push('/')
 
     }
+
+    // make sure that the user is no longer firsttime when they finish the
+    // onboarding steps
+    useEffect(async () => {
+        if(end){
+            await auth_service.changeUserAttribute("custom:vn:firsttime","false")
+        }
+    },[end])
 
     const steps = [
         {
