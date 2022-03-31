@@ -1,10 +1,16 @@
 {
   "auth": {
     "vnspoc48ab07f8": {
-      "service"       : "Cognito",
+      "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn"     : [],
-      "customAuth"    : false
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "analytics": {
+    "vnspoc": {
+      "service": "Pinpoint",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

@@ -1,0 +1,21 @@
+{
+    "appName": "vnspoc",
+    "roleName": "pinpointLambdaRolec08112f3",
+    "cloudformationPolicyName": "cloudformationPolicyc08112f3",
+    "cloudWatchPolicyName": "cloudWatchPolicyc08112f3",
+    "pinpointPolicyName": "pinpointPolicyc08112f3",
+    "authPolicyName": "pinpoint_amplify_c08112f3",
+    "unauthPolicyName": "pinpoint_amplify_c08112f3",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

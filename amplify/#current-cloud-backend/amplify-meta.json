@@ -1,37 +1,54 @@
 {
   "providers": {
     "awscloudformation": {
-      "AuthRoleName"        : "amplify-vnspoc-dev-135153-authRole",
-      "UnauthRoleArn"       : "arn:aws:iam::884211406792:role/amplify-vnspoc-dev-135153-unauthRole",
-      "AuthRoleArn"         : "arn:aws:iam::884211406792:role/amplify-vnspoc-dev-135153-authRole",
-      "Region"              : "us-east-1",
+      "AuthRoleName": "amplify-vnspoc-dev-135153-authRole",
+      "UnauthRoleArn": "arn:aws:iam::884211406792:role/amplify-vnspoc-dev-135153-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::884211406792:role/amplify-vnspoc-dev-135153-authRole",
+      "Region": "us-east-1",
       "DeploymentBucketName": "amplify-vnspoc-dev-135153-deployment",
-      "UnauthRoleName"      : "amplify-vnspoc-dev-135153-unauthRole",
-      "StackName"           : "amplify-vnspoc-dev-135153",
-      "StackId"             : "arn:aws:cloudformation:us-east-1:884211406792:stack/amplify-vnspoc-dev-135153/d63d0fc0-762b-11ec-a71a-0a5196a2cee1",
-      "AmplifyAppId"        : "d3ijtvz187ntq0"
+      "UnauthRoleName": "amplify-vnspoc-dev-135153-unauthRole",
+      "StackName": "amplify-vnspoc-dev-135153",
+      "StackId": "arn:aws:cloudformation:us-east-1:884211406792:stack/amplify-vnspoc-dev-135153/d63d0fc0-762b-11ec-a71a-0a5196a2cee1",
+      "AmplifyAppId": "d3ijtvz187ntq0"
     }
   },
   "auth": {
     "vnspoc48ab07f8": {
-      "service"          : "Cognito",
-      "providerPlugin"   : "awscloudformation",
-      "dependsOn"        : [],
-      "customAuth"       : false,
-      "output"           : {
-        "UserPoolId"      : "us-east-1_2DLkXRo2D",
-        "AppClientIDWeb"  : "66jcp2sq7a1urv269bscmf7u9o",
-        "AppClientID"     : "26r5c6fdj06svbq88hbt6g57tu",
-        "IdentityPoolId"  : "us-east-1:03e3be68-46f3-494d-bf92-56febef3ecb6",
-        "IdentityPoolName": "vnspoc48ab07f8_identitypool_48ab07f8__dev",
-        "UserPoolName"    : "vnspoc48ab07f8_userpool_48ab07f8"
-      },
-      "lastPushTimeStamp": "2022-02-21T01:11:41.770Z",
-      "providerMetadata" : {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-vnspoc-dev-135153-deployment/amplify-cfn-templates/auth/vnspoc48ab07f8-cloudformation-template.yml",
-        "logicalId"    : "authvnspoc48ab07f8"
+        "logicalId": "authvnspoc48ab07f8"
       },
-      "lastPushDirHash"  : "qD3aOMWivjUeRUvRqMKnYWVvwCE="
+      "lastPushTimeStamp": "2022-03-31T23:09:18.060Z",
+      "output": {
+        "UserPoolId": "us-east-1_2DLkXRo2D",
+        "AppClientIDWeb": "66jcp2sq7a1urv269bscmf7u9o",
+        "AppClientID": "26r5c6fdj06svbq88hbt6g57tu",
+        "IdentityPoolId": "us-east-1:03e3be68-46f3-494d-bf92-56febef3ecb6",
+        "IdentityPoolName": "vnspoc48ab07f8_identitypool_48ab07f8__dev",
+        "UserPoolName": "vnspoc48ab07f8_userpool_48ab07f8"
+      },
+      "lastPushDirHash": "PVlJa9kvjelZTbyJZIbiZ/5WMEo="
+    }
+  },
+  "analytics": {
+    "vnspoc": {
+      "service": "Pinpoint",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-vnspoc-dev-135153-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+        "logicalId": "analyticsvnspoc"
+      },
+      "lastPushTimeStamp": "2022-03-31T23:09:18.060Z",
+      "output": {
+        "appName": "vnspoc-dev",
+        "Region": "us-east-1",
+        "Id": "03135b2c0c354870b8ba5f0b551db993"
+      },
+      "lastPushDirHash": "oonrIPm/BObqT6N7aMsoWQK0jss="
     }
   }
 }
