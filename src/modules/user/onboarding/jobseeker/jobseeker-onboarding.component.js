@@ -65,7 +65,7 @@ const JobseekerOnboardingComponent = () => {
 
     const logout = () => {
         auth_service.userLogout();
-        history.push('/')
+        history.push('/a')
 
     }
 
