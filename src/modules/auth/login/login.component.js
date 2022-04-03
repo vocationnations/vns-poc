@@ -31,13 +31,13 @@ const LoginComponent = () => {
                     // set the user_id in the context
                     setUserID(res.id)
                     // redirect to the home page
-                    history.push('/')
+                    history.push('/a')
                 })
 
                 console.log("USER IS")
                 console.log(user.attributes.email)
                 setUser(user)
-                history.push('/')
+                history.push('/a')
             },
             (err) => setErrMessage(err.message))
     }
