@@ -71,7 +71,7 @@ const questions = [
 const Questions = ({setDone, setFinalData, setRadialData}) => {
   const [questionNumber, setQuestionNumber]   = useState(0);
   const [numericalScores, setNumericalScores] = useState({
-    "adhocracy": 0, "hierarchy": 0, "clan": 0, "market": 0
+    "clan": 0, "adhocracy": 0, "market": 0, "hierarchy": 0
   })
 
   const advanceQuestion = () => {
