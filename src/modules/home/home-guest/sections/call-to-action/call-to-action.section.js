@@ -17,6 +17,12 @@ const CallToActionSection = ({userType}) => {
                     >Sign up
                     </button>
                 </Link>
+                <Link to={"/login?type=" + userType}>
+                <button
+                    className="btn btn-primary btn-lg m-5"
+                >Log in
+                </button>
+            </Link>
                 <div className="vspacer-20"/>
             </div>
         </section>
