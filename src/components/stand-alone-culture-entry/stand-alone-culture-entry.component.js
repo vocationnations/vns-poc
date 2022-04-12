@@ -26,10 +26,10 @@ const StandaloneCultureEntryComponent = () => {
 
 
         let payload = {
-            "adhocracy": radialData[0],
-            "hierarchy": radialData[1],
-            "clan"     : radialData[2],
-            "market"   : radialData[3],
+            "clan": radialData[0],
+            "adhocracy": radialData[1],
+            "market"     : radialData[2],
+            "hierarchy"   : radialData[3],
             "user_id"  : userId
         }
 
