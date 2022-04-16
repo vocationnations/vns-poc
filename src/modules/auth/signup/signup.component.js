@@ -89,18 +89,6 @@ const SignupComponent = () => {
                 <button type="submit" className="btn btn-info"
                         onClick={() => handleSignUp()}>Sign Up
                 </button>
-                <lww>or</lww>
-                <div
-                    className="container d-flex flex-row justify-content-center">
-                    <i className="fab fa-5x fa-facebook-square pr-5"
-                       style={{cursor: 'pointer'}}
-                       onClick={() => Auth.federatedSignIn({provider: 'Facebook'})}
-                    />
-                    <i className="fab fa-5x fa-google"
-                       style={{cursor: 'pointer'}}
-                       onClick={() => Auth.federatedSignIn({provider: 'Google'})}
-                    />
-                </div>
             </div>
         </div>
     );
