@@ -8,23 +8,27 @@ const state = {
             id: "basic-bar"
         },
         xaxis: {
-            categories: ["Adhocracy", "Hierarchy", "Clan", "Market"]
+            categories: ["Clan", "Adhocracy", "Market", "Hierarchy"]
         }
     }
 };
 
 const initialSeries = [
     {
-        name: "Tesla Inc.",
-        data: [100, 30, 40, 100]
+        name: "Red Cross",
+        data: [87, 37, 3, 75]
     },
     {
-        name: "Activision Inc.",
-        data: [30, 100, 50, 20]
+        name: "Tesla",
+        data: [6, 100, 87, 12]
     },
     {
-        name: "Zappios Inc.",
-        data: [90, 20, 100, 20]
+        name: "General Hospital",
+        data: [100, 12, 6, 87]
+    },
+    {
+        name: "Exxon Mobil",
+        data: [37, 3, 75, 75]
     },
     {
         name: "POP_THIS!",
