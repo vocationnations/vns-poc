@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import AuthService from "../auth.service";
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {useUser} from "../context/user-provider";
 
 import './login.component.css'
@@ -25,14 +25,14 @@ const LoginComponent = () => {
         auth_service.userLogin(
             email, pass,
             (user) => {
-
+git
                 // get the user_id from the vns database for this user
                 auth_service.getUserIdFromEmail(user.attributes.email, (res) => {
                     // set the user_id in the context
                     setUserID(res.id)
                     // redirect to the home page
                     history.push('/a')
-                })
+                }, (err) => setErrMessage(err.message))
 
                 console.log("USER IS")
                 console.log(user.attributes.email)
@@ -66,6 +66,9 @@ const LoginComponent = () => {
                 <button type="submit" className="btn btn-info"
                         onClick={() => handleSignIn()}>Sign In
                 </button>
+                <Link to={"/forgotpassword" }>
+                    <label>forgot password?</label>
+            </Link>
                 <lww>or</lww>
                 <div
                     className="container d-flex flex-row justify-content-center">

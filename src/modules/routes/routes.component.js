@@ -6,6 +6,8 @@ import {AuthRoutes} from "../auth/auth-routes/auth-routes.component";
 import SignupComponent from "../auth/signup/signup.component";
 import {useUser} from "../auth/context/user-provider";
 import UserConfirmComponent from "../user/confirm/user-confirm.component";
+import UserForgotPasswordComponent from "../auth/forgotpassword/user-forgotpassword.component";
+
 
 const MainRoutes = [
     {
@@ -30,6 +32,11 @@ const MainRoutes = [
         name: "Confirm",
         path: '/confirm/:email',
         component: <UserConfirmComponent/>
+    },
+    {
+        name: "Forgotpassowrd",
+        path: '/forgotpassword',
+        component: <UserForgotPasswordComponent/>
     }
 ]
 

@@ -34,6 +34,47 @@ class AuthService extends Service {
     }
 
     /**
+     * userForgotPassword function accesses AWS Cognito Authentication API to
+     * reset the user's password.
+     * @param email the user's email
+     * @param success the callback to execute if successful
+     * @param error the callback to execute if unsuccessful
+     */
+    userForgotPassword(email, success, error) {
+
+        // Send confirmation code to user's email
+        Auth.forgotPassword(email)
+            .then(data => console.log(data))
+            .catch((e) => {
+                console.log("ERROR")
+                console.log(e)
+                error(e)
+            })
+    }
+
+    /**
+     * userForgotPasswordCode function accesses AWS Cognito Authentication API to
+     * reset the user's password.
+     * @param email the user's email
+     * @param code email's confirmation code
+     * @param newPassword the user's new password
+     * @param success the callback to execute if successful
+     * @param error the callback to execute if unsuccessful
+     */
+    userForgotPasswordSubmit(email, code, newPassword, success, error) {
+
+        // Collect confirmation code and new password, then
+        Auth.forgotPasswordSubmit(email, code, newPassword)
+            .then(data => console.log(data))
+            .catch((e) => {
+                console.log("ERROR")
+                console.log(e)
+                error(e)
+            })
+    }
+
+
+    /**
      * getUserIdFromEmail function returns the id of the user from vns
      * database for a given user
      * @param email the email to get the user id from
