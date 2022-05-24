@@ -44,7 +44,7 @@ class AuthService extends Service {
 
         // Send confirmation code to user's email
         Auth.forgotPassword(email)
-            .then(data => console.log(data))
+            .then(data => success(data))
             .catch((e) => {
                 console.log("ERROR")
                 console.log(e)
@@ -65,7 +65,7 @@ class AuthService extends Service {
 
         // Collect confirmation code and new password, then
         Auth.forgotPasswordSubmit(email, code, newPassword)
-            .then(data => console.log(data))
+            .then(data => success(data))
             .catch((e) => {
                 console.log("ERROR")
                 console.log(e)

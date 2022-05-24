@@ -7,6 +7,7 @@ import SignupComponent from "../auth/signup/signup.component";
 import {useUser} from "../auth/context/user-provider";
 import UserConfirmComponent from "../user/confirm/user-confirm.component";
 import UserForgotPasswordComponent from "../auth/forgotpassword/user-forgotpassword.component";
+import UserForgotPasswordSubmitComponent from "../auth/forgotpassword/user-forgotpasswordsubmit.component";
 
 
 const MainRoutes = [
@@ -37,6 +38,11 @@ const MainRoutes = [
         name: "Forgotpassowrd",
         path: '/forgotpassword',
         component: <UserForgotPasswordComponent/>
+    },
+    {
+        name: "Forgotpassowrdsubmit",
+        path: '/forgotpasswordsubmit',
+        component: <UserForgotPasswordSubmitComponent/>
     }
 ]
 

@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import {Auth} from "aws-amplify";
 import AuthService from "../auth.service";
+import {useHistory} from "react-router-dom";
 
 const auth_service = new AuthService();
 
 
 const UserForgotPasswordComponent = () => {
+
+    const history = useHistory();
 
     const [email, setEmail] = useState('')
     const [success, setSuccess] = useState("")
@@ -15,11 +18,12 @@ const UserForgotPasswordComponent = () => {
 
     const handleForgotPassword = () => {
         auth_service.userForgotPassword(
-            email, () => {
-
-            },
-            (err) => setErrMessage(err.message),
-        )
+            email,
+            () => {
+            setSuccess("Successfully requested password reset ...")
+            setTimeout( () => { history.push('/forgotpasswordsubmit') })
+        },
+        (e) => { setError(e.message) })
     }
     return (
         <div className="container-fluid pt-5 row justify-content-center">
@@ -35,7 +39,7 @@ const UserForgotPasswordComponent = () => {
                            required className="form-control"/>
                 </div>
                 <button type="submit" className="btn btn-info"
-                        onClick={() => handleForgotPassword()}>done
+                        onClick={() => handleForgotPassword()}>Reset password
                 </button>
             </div>
         </div>
